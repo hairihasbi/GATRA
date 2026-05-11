@@ -610,7 +610,7 @@ export const Quiz: React.FC<QuizProps> = ({ onClose, onFinish, initialMode, acti
               >
                 <div className="text-center space-y-2">
                    <h2 className="text-3xl font-black text-emerald-950 uppercase italic font-serif">Siap Uji Nyali?</h2>
-                   <p className="text-slate-500 font-bold text-xs max-w-md mx-auto">Tunjukkan kehebatanmu dalam menguasai pergeseran arah di tengah rimba transformasi!</p>
+                   <p className="text-slate-500 font-bold text-xs max-w-md mx-auto">Tunjukkan kehebatanmu dalam menguasai pergeseran arah di tengah GATRA!</p>
                 </div>
 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-8">

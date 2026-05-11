@@ -9,15 +9,35 @@ export const CollaborationControls: React.FC<{ currentParams: any, activeScene: 
   const [joinCode, setJoinCode] = useState('');
   const [isCopied, setIsCopied] = useState(false);
   const [showInvite, setShowInvite] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
 
-  const handleCreate = () => {
-    createSession({ params: currentParams, sceneId: activeScene });
+  const handleCreate = async () => {
+    setIsLoading(true);
+    setError(null);
+    try {
+      await createSession({ params: currentParams, sceneId: activeScene });
+    } catch (err: any) {
+      setError("Gagal membuat sesi. Pastikan Anonymous Auth aktif.");
+      console.error(err);
+    } finally {
+      setIsLoading(false);
+    }
   };
 
-  const handleJoin = (e: React.FormEvent) => {
+  const handleJoin = async (e: React.FormEvent) => {
     e.preventDefault();
     if (joinCode.trim()) {
-      joinSession(joinCode.trim());
+      setIsLoading(true);
+      setError(null);
+      try {
+        await joinSession(joinCode.trim());
+      } catch (err: any) {
+        setError("Gagal masuk. Kode salah atau masalah jaringan.");
+        console.error(err);
+      } finally {
+        setIsLoading(false);
+      }
     }
   };
 
@@ -42,12 +62,22 @@ export const CollaborationControls: React.FC<{ currentParams: any, activeScene: 
               </h4>
               <p className="text-[10px] text-white/60 mb-4">Belajar bersama secara real-time. Bagikan layar Anda (Host) atau tonton (Siswa).</p>
               
+              {error && (
+                <div className="bg-red-500/20 border border-red-500/50 p-2 rounded-lg mb-4 text-[9px] text-red-200 font-bold">
+                  {error}
+                </div>
+              )}
+
               <div className="space-y-3">
                 <button 
                   onClick={handleCreate}
-                  className="w-full bg-amber-500 hover:bg-amber-600 text-black font-black text-xs py-2 rounded-xl transition-all uppercase"
+                  disabled={isLoading}
+                  className={cn(
+                    "w-full bg-amber-500 hover:bg-amber-600 text-black font-black text-xs py-2 rounded-xl transition-all uppercase flex items-center justify-center gap-2",
+                    isLoading && "opacity-50 cursor-not-allowed"
+                  )}
                 >
-                  Mulai Sebagai Host
+                  {isLoading ? 'Menghubungkan...' : 'Mulai Sebagai Host'}
                 </button>
                 
                 <div className="relative">
