@@ -22,7 +22,10 @@ import {
   RotateCcw,
   RotateCw,
   Maximize,
-  Layers
+  Layers,
+  User,
+  GraduationCap,
+  Award
 } from 'lucide-react';
 import { MathPlotter } from './components/MathPlotter.tsx';
 import { GPSLab } from './components/GPSLab.tsx';
@@ -54,6 +57,8 @@ import { BackgroundMusic } from './components/BackgroundMusic.tsx';
 export default function App() {
   const [gameState, setGameState] = useState<GameState>('map');
   const [showStory, setShowStory] = useState(false);
+  const [showObjectives, setShowObjectives] = useState(false);
+  const [showProfile, setShowProfile] = useState(false);
   const [activeModule, setActiveModule] = useState<ModuleId>('translasi');
   const [labMode, setLabMode] = useState<LabMode>('graph');
   const [currentSubTopic, setCurrentSubTopic] = useState<string>('');
@@ -137,6 +142,12 @@ export default function App() {
         {showStory && (
           <StoryModal onClose={() => setShowStory(false)} />
         )}
+        {showObjectives && (
+          <ObjectivesModal onClose={() => setShowObjectives(false)} />
+        )}
+        {showProfile && (
+          <ProfileModal onClose={() => setShowProfile(false)} />
+        )}
       </AnimatePresence>
 
       {/* Dynamic Header */}
@@ -193,20 +204,34 @@ export default function App() {
                    <h2 className="text-4xl sm:text-6xl font-black text-white uppercase tracking-tighter drop-shadow-2xl">Peta Hutan Aljabar</h2>
                    <div className="h-1 w-24 bg-orange-500 mx-auto mt-4 rounded-full shadow-lg shadow-orange-500/50" />
                    
-                    <div className="flex justify-center gap-4 mt-6">
+                    <div className="flex flex-wrap justify-center gap-3 sm:gap-4 mt-6">
                       <button 
                         onClick={() => setShowStory(true)}
-                        className="flex items-center gap-2 px-4 py-2 bg-white/10 backdrop-blur-sm border border-white/20 rounded-full text-[10px] font-black uppercase text-emerald-100 hover:bg-white/20 transition-all"
+                        className="flex items-center gap-2 px-4 py-2 bg-white/10 backdrop-blur-sm border border-white/20 rounded-full text-[10px] font-black uppercase text-emerald-100 hover:bg-white/20 transition-all border-b-2 border-white/5"
                       >
                         <BookOpen className="w-4 h-4 text-orange-400" />
                         Legenda GATRA
+                      </button>
+                      <button 
+                        onClick={() => setShowObjectives(true)}
+                        className="flex items-center gap-2 px-4 py-2 bg-white/10 backdrop-blur-sm border border-white/20 rounded-full text-[10px] font-black uppercase text-emerald-100 hover:bg-white/20 transition-all border-b-2 border-white/5"
+                      >
+                        <GraduationCap className="w-4 h-4 text-blue-400" />
+                        Tujuan Pembelajaran
+                      </button>
+                      <button 
+                        onClick={() => setShowProfile(true)}
+                        className="flex items-center gap-2 px-4 py-2 bg-white/10 backdrop-blur-sm border border-white/20 rounded-full text-[10px] font-black uppercase text-emerald-100 hover:bg-white/20 transition-all border-b-2 border-white/5"
+                      >
+                        <User className="w-4 h-4 text-emerald-400" />
+                        Profil Pengajar
                       </button>
                       <button 
                         onClick={() => {
                           setQuizInitialMode('duel');
                           setShowQuiz(true);
                         }}
-                        className="flex items-center gap-2 px-4 py-2 bg-orange-500 rounded-full text-[10px] font-black uppercase text-white hover:bg-orange-600 transition-all shadow-lg shadow-orange-900/50"
+                        className="flex items-center gap-2 px-4 py-2 bg-orange-500 rounded-full text-[10px] font-black uppercase text-white hover:bg-orange-600 transition-all shadow-lg shadow-orange-900/50 border-b-4 border-orange-700 active:border-b-0 active:translate-y-1"
                       >
                         <Swords className="w-4 h-4" />
                         Duel Penjelajah
@@ -671,16 +696,23 @@ function StoryModal({ onClose }: { onClose: () => void }) {
       <motion.div 
         initial={{ scale: 0.9, y: 20 }}
         animate={{ scale: 1, y: 0 }}
-        className="max-w-2xl w-full bg-[#fdfaf3] rounded-[40px] shadow-2xl overflow-hidden relative border-4 border-emerald-800"
+        className="max-w-xl w-full max-h-[90vh] overflow-y-auto bg-[#fdfaf3] rounded-[40px] shadow-2xl relative border-4 border-emerald-800 scrollbar-hide"
       >
         <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/papyros.png')] opacity-20 pointer-events-none" />
         
-        <div className="p-8 sm:p-12 relative z-10 text-center">
+        <button 
+          onClick={onClose}
+          className="absolute top-6 right-6 z-30 w-10 h-10 bg-white/80 backdrop-blur-md rounded-full border border-emerald-100 flex items-center justify-center text-emerald-900 hover:bg-emerald-50 transition-colors shadow-sm"
+        >
+          <X className="w-5 h-5" />
+        </button>
+
+        <div className="p-8 sm:p-10 relative z-10 text-center">
           <div className="w-20 h-20 bg-emerald-100 rounded-3xl flex items-center justify-center mx-auto mb-8 shadow-xl border-2 border-emerald-200">
             <BookOpen className="w-10 h-10 text-emerald-800" />
           </div>
           
-          <h2 className="text-3xl sm:text-4xl font-black text-emerald-950 uppercase tracking-tighter mb-6 italic font-serif">Legenda Hutan Transformasi</h2>
+          <h2 className="text-3xl sm:text-4xl font-black text-emerald-950 uppercase tracking-tighter mb-6 italic font-serif">Legenda GATRA</h2>
           
           <div className="space-y-6 text-slate-600 leading-relaxed text-sm sm:text-base font-medium italic">
             <p>
@@ -696,10 +728,161 @@ function StoryModal({ onClose }: { onClose: () => void }) {
           
           <button 
             onClick={onClose}
-            className="mt-10 w-full sm:w-auto px-10 py-4 bg-emerald-950 text-white rounded-full font-black uppercase tracking-widest hover:bg-black transition-all shadow-xl shadow-emerald-900/40"
+            className="mt-10 w-full sm:w-auto px-10 py-4 bg-emerald-950 text-white rounded-full font-black uppercase tracking-widest hover:bg-black transition-all shadow-xl shadow-emerald-900/40 border-b-4 border-emerald-800 active:border-b-0 active:translate-y-1"
           >
             Mulai Petualangan
           </button>
+        </div>
+      </motion.div>
+    </motion.div>
+  );
+}
+
+function ObjectivesModal({ onClose }: { onClose: () => void }) {
+  const objectives = [
+    "Menjelaskan Transformasi Pada Suatu Fungsi Linear, Kuadrat, dan Fungsi Eksponen",
+    "Menentukan Transformasi Translasi Pada Suatu Fungsi",
+    "Menentukan Transformasi Refleksi Pada Suatu Fungsi",
+    "Menentukan Transformasi Dilatasi Pada Suatu Fungsi",
+    "Menentukan Transformasi Rotasi Pada Suatu Fungsi",
+    "Menentukan Kombinasi Transformasi Pada Suatu Fungsi"
+  ];
+
+  return (
+    <motion.div 
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-emerald-950/90 backdrop-blur-md"
+    >
+      <motion.div 
+        initial={{ scale: 0.9, y: 20 }}
+        animate={{ scale: 1, y: 0 }}
+        className="max-w-xl w-full max-h-[90vh] overflow-y-auto bg-[#fdfaf3] rounded-[40px] shadow-2xl relative border-4 border-blue-800 scrollbar-hide"
+      >
+        <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/papyros.png')] opacity-20 pointer-events-none" />
+        
+        <button 
+          onClick={onClose}
+          className="absolute top-6 right-6 z-30 w-10 h-10 bg-white/80 backdrop-blur-md rounded-full border border-blue-100 flex items-center justify-center text-blue-900 hover:bg-blue-50 transition-colors shadow-sm"
+        >
+          <X className="w-5 h-5" />
+        </button>
+
+        <div className="p-8 sm:p-10 relative z-10">
+          <div className="flex justify-center mb-8">
+            <div className="w-16 h-16 bg-blue-100 rounded-2xl flex items-center justify-center shadow-xl border-2 border-blue-200">
+              <GraduationCap className="w-8 h-8 text-blue-800" />
+            </div>
+          </div>
+          
+          <div className="text-center mb-8">
+            <h2 className="text-3xl font-black text-emerald-950 uppercase tracking-tighter mb-2 italic font-serif">Tujuan Pembelajaran</h2>
+            <div className="h-1 w-20 bg-blue-500 mx-auto rounded-full shadow-lg shadow-blue-500/50" />
+          </div>
+
+          <div className="space-y-6">
+            <div className="bg-white/50 p-6 rounded-3xl border border-blue-100 shadow-inner">
+               <div className="flex items-center gap-2 mb-4">
+                 <Award className="w-4 h-4 text-orange-500" />
+                 <h3 className="text-[10px] font-black uppercase tracking-widest text-blue-900 underline decoration-orange-300 decoration-2 underline-offset-4">Capaian Pembelajaran (BSKAP No. 032/H/KR/2024)</h3>
+               </div>
+               <p className="text-sm text-slate-700 leading-relaxed font-medium italic bg-emerald-50 p-4 rounded-2xl border border-emerald-100">
+                 "Di akhir fase F, peserta didik dapat melakukan operasi aljabar pada fungsi dan menentukan fungsi invers, komposisi fungsi, dan transformasi fungsi untuk memodelkan situasi dunia nyata menggunakan fungsi yang sesuai (linear, kuadrat, eksponensial)."
+               </p>
+            </div>
+
+            <div className="bg-white p-6 rounded-3xl border border-slate-100 shadow-sm">
+               <h3 className="text-[10px] font-black uppercase tracking-widest text-slate-400 mb-4">Indikator Keberhasilan:</h3>
+               <div className="grid grid-cols-1 gap-3">
+                 {objectives.map((obj, i) => (
+                   <div key={i} className="flex gap-4 items-start p-2 hover:bg-blue-50 rounded-xl transition-colors">
+                      <div className="w-6 h-6 bg-blue-600 text-white rounded-lg flex items-center justify-center font-black text-[10px] shrink-0 border-b-2 border-blue-800">{i+1}</div>
+                      <p className="text-sm font-bold text-slate-700 leading-tight">{obj}</p>
+                   </div>
+                 ))}
+               </div>
+            </div>
+          </div>
+          
+          <button 
+            onClick={onClose}
+            className="mt-10 w-full px-10 py-4 bg-emerald-950 text-white rounded-full font-black uppercase tracking-widest hover:bg-black transition-all shadow-xl shadow-emerald-900/40 border-b-4 border-emerald-800 active:border-b-0 active:translate-y-1"
+          >
+            Mengerti, Lanjutkan
+          </button>
+        </div>
+      </motion.div>
+    </motion.div>
+  );
+}
+
+function ProfileModal({ onClose }: { onClose: () => void }) {
+  return (
+    <motion.div 
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-emerald-950/90 backdrop-blur-md"
+    >
+      <motion.div 
+        initial={{ scale: 0.9, y: 20 }}
+        animate={{ scale: 1, y: 0 }}
+        className="max-w-md w-full max-h-[90vh] overflow-y-auto bg-[#fdfaf3] rounded-[40px] shadow-2xl relative border-4 border-emerald-700 scrollbar-hide"
+      >
+        <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/papyros.png')] opacity-20 pointer-events-none" />
+        
+        <button 
+          onClick={onClose}
+          className="absolute top-6 right-6 z-30 w-10 h-10 bg-white/80 backdrop-blur-md rounded-full border border-emerald-100 flex items-center justify-center text-emerald-900 hover:bg-emerald-50 transition-colors shadow-sm"
+        >
+          <X className="w-5 h-5" />
+        </button>
+
+        <div className="p-8 sm:p-10 relative z-10">
+          <div className="flex justify-center mb-8 relative">
+             <div className="absolute inset-0 bg-emerald-500/20 blur-3xl rounded-full" />
+             <div className="w-32 h-32 bg-emerald-100 rounded-[48px] overflow-hidden border-4 border-white shadow-2xl relative z-10 flex items-center justify-center group hover:rotate-6 transition-transform">
+                <div className="absolute inset-0 bg-emerald-800 opacity-0 group-hover:opacity-10 transition-opacity" />
+                <User className="w-16 h-16 text-emerald-800" />
+             </div>
+             <div className="absolute bottom-0 right-1/2 translate-x-12 translate-y-2 w-10 h-10 bg-orange-500 rounded-2xl border-4 border-white shadow-lg flex items-center justify-center z-20">
+                <Award className="w-5 h-5 text-white" />
+             </div>
+          </div>
+          
+          <div className="text-center">
+            <div className="inline-block px-3 py-1 bg-emerald-100 text-emerald-700 rounded-full text-[10px] font-black uppercase tracking-widest mb-3">
+               Guru Matematika
+            </div>
+            <h2 className="text-3xl font-black text-emerald-950 uppercase tracking-tighter mb-1 font-serif italic">Hairi Hasbi</h2>
+            <div className="flex items-center justify-center gap-2 text-slate-500 font-bold text-sm mb-8">
+               <MapIcon className="w-3 h-3 text-orange-500" />
+               SMAN 5 Banjarbaru
+            </div>
+            
+            <div className="bg-white/60 p-6 rounded-3xl border border-emerald-100 shadow-inner mb-8 text-left">
+               <div className="flex items-center gap-4 mb-4">
+                  <div className="w-10 h-10 bg-white rounded-xl shadow-sm border border-emerald-100 flex items-center justify-center">
+                     <Award className="w-5 h-5 text-orange-500" />
+                  </div>
+                  <div>
+                     <p className="text-[10px] font-black text-slate-400 uppercase tracking-widest leading-none">Status Pengajar</p>
+                     <p className="text-sm font-bold text-emerald-950 uppercase">Profil Profesional</p>
+                  </div>
+               </div>
+               <p className="text-[13px] text-slate-600 leading-relaxed italic font-medium">
+                 "Mengabdi untuk mencerdaskan generasi bangsa melalui pendekatan matematika yang inovatif dan interaktif. Selamat datang di GATRA!"
+               </p>
+            </div>
+
+            <button 
+              onClick={onClose}
+              className="w-full px-10 py-4 bg-emerald-950 text-white rounded-full font-black uppercase tracking-widest hover:bg-black transition-all shadow-xl shadow-emerald-900/40 border-b-4 border-emerald-900 active:translate-y-1 active:border-b-0"
+            >
+              Tutup Profil
+            </button>
+          </div>
         </div>
       </motion.div>
     </motion.div>
