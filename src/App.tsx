@@ -687,7 +687,7 @@ function StoryModal({ onClose }: { onClose: () => void }) {
               "Dahulu kala, di kedalaman <span className="text-emerald-800 font-black">GATRA</span> (Grafik Algebra Transformasi), terdapat sebuah dimensi ajaib yang dikenal sebagai Hutan Transformasi. Di sini, segala sesuatunya hidup dalam bentuk fungsi-fungsi murni."
             </p>
             <p>
-              "Pohon-pohon tumbuh mengikuti kurva eksponensial, dan sungai-sungai mengalir setenang fungsi linear. Namun, keseimbangan hutan ini dijaga oleh empat kekuatan rahasia: <span className="text-orange-600 font-bold">Pergeseran</span>, <span className="text-blue-600 font-bold">Cermin Ajaib</span>, <span className="text-indigo-600 font-bold">Peregangan</span>, dan <span className="text-purple-600 font-bold">Pusaran Angin</span>."
+              "Pohon-pohon tumbuh mengikuti kurva eksponensial, dan sungai-sungai mengalir setenang fungsi linear. Namun, keseimbangan dimensi ini dijaga oleh empat kekuatan rahasia: <span className="text-orange-600 font-bold">Pergeseran</span>, <span className="text-blue-600 font-bold">Cermin Ajaib</span>, <span className="text-indigo-600 font-bold">Peregangan</span>, dan <span className="text-purple-600 font-bold">Pusaran Angin</span>."
             </p>
             <p>
               "Kamu adalah seorang <span className="text-emerald-900 font-black">Penjelajah Aljabar</span> yang terpilih untuk menguasai kekuatan ini guna memulihkan harmoni di GATRA. Jelajahilah setiap tahap, temukan artefak kuno, dan hadapilah tantangan para rival untuk menjadi Sang Maestro Fungsi!"
