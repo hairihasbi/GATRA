@@ -413,6 +413,28 @@ export default function App() {
                          </button>
                        ))}
                     </div>
+                  ) : activeModule === 'kombinasi' ? (
+                    <div className="grid grid-cols-2 sm:grid-cols-4 gap-2">
+                       {[
+                         { id: '', label: 'Materi Utama' },
+                         { id: 'komp-translasi', label: 'Komposisi 2 Translasi' },
+                         { id: 'komp-refleksi', label: 'Komposisi 2 Refleksi' },
+                         { id: 'komp-rotasi', label: 'Komposisi 2 Rotasi' },
+                       ].map((topic) => (
+                         <button 
+                           key={topic.id}
+                           onClick={() => handleSubTopicSelect(topic.id)} 
+                           className={cn(
+                             "py-3 px-4 rounded-xl text-[9px] font-black uppercase transition-all border-2",
+                             currentSubTopic === topic.id 
+                               ? "bg-amber-600 text-white border-amber-600 shadow-lg scale-105" 
+                               : "bg-white text-amber-900 border-slate-200 hover:border-amber-50"
+                           )}
+                         >
+                           {topic.label}
+                         </button>
+                       ))}
+                    </div>
                   ) : (
                     <div className="grid grid-cols-2 sm:grid-cols-4 gap-2">
                        <button 
@@ -2065,214 +2087,116 @@ function DetailedLessonContent({ id, subTopic, onSubTopicSelect, onStartQuiz, on
       );
 
     case 'kombinasi':
-      if (subTopic === 'linear') {
+      if (subTopic === 'komp-translasi') {
         return (
           <div className="space-y-12">
-            <h3 className="text-xl font-black text-amber-900 border-b-2 border-amber-100 pb-2 uppercase tracking-tighter">Sub-Materi: Kombinasi Fungsi Linear</h3>
+            <h3 className="text-xl font-black text-amber-900 border-b-2 border-amber-100 pb-2 uppercase tracking-tighter">Komposisi Dua Translasi</h3>
+            <p className="text-sm text-slate-600 bg-amber-50 p-4 rounded-2xl border border-amber-100 italic">
+              Komposisi dua translasi T₁ diikuti T₂ setara dengan satu translasi T yang merupakan hasil penjumlahan kedua translasi tersebut. T(a, b) + T(c, d) = T(a+c, b+d).
+            </p>
             <div className="space-y-10">
               <ExampleBox 
-                title="Contoh 1: Geser + Cermin"
-                soal="f(x) = 2x digeser 3 ke kanan lalu dicerminkan terhadap sumbu X. Hasilnya?"
+                title="Contoh 1: Penjumlahan Translasi"
+                soal="Fungsi f(x) = 2x + 3 ditranslasikan oleh T₁(2, 1) kemudian dilanjutkan dengan T₂(3, 4). Tentukan bayangannya!"
                 ditanya="Persamaan g(x)."
                 langkah={[
-                  "Langkah 1 (Geser): f₁(x) = 2(x - 3) = 2x - 6.",
-                  "Langkah 2 (Cermin X): g(x) = -f₁(x) = -(2x - 6).",
-                  "Hasil: g(x) = -2x + 6."
+                  "Tentukan translasi total: T = T₁ + T₂ = (2+3, 1+4) = (5, 5).",
+                  "Gunakan rumus translasi: g(x) = f(x - 5) + 5.",
+                  "Substitusi: g(x) = 2(x - 5) + 3 + 5.",
+                  "Hasil: g(x) = 2x - 10 + 8 = 2x - 2."
                 ]}
-                plotFunc="2x"
-                plotParams={{...emptyParams, c: 3, reflectX: true}}
+                plotFunc="2x+3"
+                plotParams={{...emptyParams, c: 5, d: 5}}
               />
               <ExampleBox 
-                title="Contoh 2: Skala + Geser"
-                soal="f(x) = x didilatasi vertikal faktor 3 lalu digeser 2 ke atas. Bayangannya?"
-                ditanya="Persamaan g(x)."
+                title="Contoh 2: Translasi Balik"
+                soal="Jika y = x² ditranslasikan oleh T₁(a, b) lalu T₂(-1, 3) menghasilkan y = (x-2)² + 5. Tentukan nilai a dan b!"
+                ditanya="Nilai a dan b."
                 langkah={[
-                  "Langkah 1 (Skala): f₁(x) = 3x.",
-                  "Langkah 2 (Geser): g(x) = 3x + 2.",
-                  "Hasil: g(x) = 3x + 2."
-                ]}
-                plotFunc="x"
-                plotParams={{...emptyParams, a: 3, d: 2}}
-              />
-              <ExampleBox 
-                title="Contoh 3: Cermin Y + Geser"
-                soal="f(x) = x + 1 dicerminkan terhadap sumbu Y lalu digeser 1 ke kanan. Hasilnya?"
-                ditanya="Persamaan g(x)."
-                langkah={[
-                  "Langkah 1 (Cermin Y): f₁(x) = f(-x) = -x + 1.",
-                  "Langkah 2 (Geser kanan 1): g(x) = - (x - 1) + 1.",
-                  "Hasil: g(x) = -x + 1 + 1 = -x + 2."
-                ]}
-                plotFunc="x+1"
-                plotParams={{...emptyParams, reflectY: true, c: 1}}
-              />
-              <ExampleBox 
-                title="Contoh 4: Rotasi + Geser"
-                soal="f(x) = x diputar 180° lalu digeser 5 ke atas. Bayangannya?"
-                ditanya="Persamaan g(x)."
-                langkah={[
-                  "Langkah 1 (Rotasi 180): f₁(x) = -(-x) = x.",
-                  "Langkah 2 (Geser): g(x) = x + 5.",
-                  "Hasil: g(x) = x + 5."
-                ]}
-                plotFunc="x"
-                plotParams={{...emptyParams, reflectX: true, reflectY: true, d: 5}}
-              />
-              <ExampleBox 
-                title="Contoh 5: Menafsirkan Gabungan"
-                soal="f(x) = x menjadi g(x) = 2x + 4. Apa kombinasinya jika dimulai dari dilatasi?"
-                ditanya="Urutan transformasi."
-                langkah={[
-                  "g(x) = 2(x + 2).",
-                  "Artinya: Dilatasi vertikal faktor 2, kemudian geser ke KIRI 2 satuan.",
-                  "Jawaban: Dilatasi vertikal dan Translasi."
-                ]}
-                plotFunc="x"
-                plotParams={{...emptyParams, a: 2, c: -2}}
-              />
-            </div>
-          </div>
-        );
-      }
-      if (subTopic === 'kuadrat') {
-        return (
-          <div className="space-y-12">
-            <h3 className="text-xl font-black text-amber-900 border-b-2 border-amber-100 pb-2 uppercase tracking-tighter">Sub-Materi: Kombinasi Fungsi Kuadrat</h3>
-            <div className="space-y-10">
-              <ExampleBox 
-                title="Contoh 1: Geser + Balik"
-                soal="f(x) = x² digeser 1 satuan ke kiri, lalu direfleksikan terhadap sumbu X. Persamaan barunya?"
-                ditanya="Persamaan g(x)."
-                langkah={[
-                  "Langkah 1 (Geser kiri 1): f₁(x) = (x + 1)².",
-                  "Langkah 2 (Cermin X): g(x) = -(x + 1)².",
-                  "Penyelesaian: g(x) = -x² - 2x - 1."
+                  "Translasi total adalah T(a-1, b+3).",
+                  "Dari hasil y = (x-2)² + 5, diketahui total geser kanan = 2 dan atas = 5.",
+                  "a - 1 = 2 → a = 3.",
+                  "b + 3 = 5 → b = 2.",
+                  "Jawaban: T₁(3, 2)."
                 ]}
                 plotFunc="x^2"
-                plotParams={{...emptyParams, c: -1, reflectX: true}}
-                plotScale={15}
-              />
-              <ExampleBox 
-                title="Contoh 2: Regang + Geser"
-                soal="f(x) = x² didilatasi vertikal faktor 2 lalu digeser 4 ke bawah. Bayangannya?"
-                ditanya="Persamaan g(x)."
-                langkah={[
-                  "Langkah 1 (Skala): f₁(x) = 2x².",
-                  "Langkah 2 (Geser bawah 4): g(x) = 2x² - 4.",
-                  "Jawaban: g(x) = 2x² - 4."
-                ]}
-                plotFunc="x^2"
-                plotParams={{...emptyParams, a: 2, d: -4}}
-                plotScale={15}
-              />
-              <ExampleBox 
-                title="Contoh 3: Puncak ke (3, 5)"
-                soal="Dari f(x) = x², bagaimana kombinasinya agar puncak menjadi di (3, 5) dan menghadap ke bawah?"
-                ditanya="Persamaan g(x)."
-                langkah={[
-                  "Puncak (3, 5) berarti digeser 3 kanan dan 5 atas: (x-3)²+5.",
-                  "Menghadap bawah berarti refleksi sumbu X.",
-                  "Hasil: g(x) = -(x - 3)² + 5."
-                ]}
-                plotFunc="x^2"
-                plotParams={{...emptyParams, c: 3, d: 5, reflectX: true}}
-                plotScale={15}
-              />
-              <ExampleBox 
-                title="Contoh 4: Cermin Y + Skala"
-                soal="f(x) = (x-2)² dicerminkan terhadap sumbu Y lalu didilatasi vertikal faktor 3. Bayangannya?"
-                ditanya="Persamaan g(x)."
-                langkah={[
-                  "Langkah 1 (Cermin Y): f₁(x) = (-x - 2)² = (x + 2)².",
-                  "Langkah 2 (Skala): g(x) = 3(x + 2)².",
-                  "Jawaban: g(x) = 3(x + 2)²."
-                ]}
-                plotFunc="(x-2)^2"
-                plotParams={{...emptyParams, reflectY: true, a: 3}}
-                plotScale={15}
-              />
-              <ExampleBox 
-                title="Contoh 5: Tiga Tahap"
-                soal="f(x) = x²: 1. Geser kanan 2. 2. Dilatasi vertikal 4. 3. Geser bawah 1."
-                ditanya="Persamaan g(x)."
-                langkah={[
-                  "Tahap 1: (x - 2)².",
-                  "Tahap 2: 4(x - 2)².",
-                  "Tahap 3: 4(x - 2)² - 1.",
-                  "Jawaban: g(x) = 4(x - 2)² - 1."
-                ]}
-                plotFunc="x^2"
-                plotParams={{...emptyParams, c: 2, a: 4, d: -1}}
+                plotParams={{...emptyParams, c: 2, d: 5}}
                 plotScale={15}
               />
             </div>
           </div>
         );
       }
-      if (subTopic === 'eksponensial') {
+      if (subTopic === 'komp-refleksi') {
         return (
           <div className="space-y-12">
-            <h3 className="text-xl font-black text-amber-900 border-b-2 border-amber-100 pb-2 uppercase tracking-tighter">Sub-Materi: Kombinasi Eksponensial</h3>
+            <h3 className="text-xl font-black text-amber-900 border-b-2 border-amber-100 pb-2 uppercase tracking-tighter">Komposisi Dua Refleksi</h3>
+            <p className="text-sm text-slate-600 bg-amber-50 p-4 rounded-2xl border border-amber-100 italic">
+              Dua refleksi terhadap dua garis sejajar setara dengan translasi. Dua refleksi terhadap dua garis yang berpotongan setara dengan rotasi.
+            </p>
             <div className="space-y-10">
               <ExampleBox 
-                title="Contoh 1: Pertumbuhan + Geser"
-                soal="y = 2^x didilatasi vertikal faktor 3 lalu digeser 1 satuan ke atas. Bayangannya?"
+                title="Contoh 1: Cermin Sejajar (Translasi)"
+                soal="Tentukan bayangan f(x) = x² jika direfleksikan terhadap garis x = 1 lalu x = 4!"
                 ditanya="Persamaan g(x)."
                 langkah={[
-                  "Langkah 1: y₁ = 3 ⋅ 2^x.",
-                  "Langkah 2: y = 3 ⋅ 2^x + 1.",
-                  "Asimtot asalnya y = 0 menjadi y = 1."
+                  "Dua refleksi terhadap garis sejajar x=a dan x=b setara dengan translasi sejauh 2(b-a).",
+                  "Geser horizontal = 2(4 - 1) = 6 satuan ke kanan.",
+                  "Hasil: g(x) = f(x - 6) = (x - 6)²."
                 ]}
-                plotFunc="2^x"
-                plotParams={{...emptyParams, a: 3, d: 1}}
+                plotFunc="x^2"
+                plotParams={{...emptyParams, c: 6}}
+                plotScale={15}
               />
               <ExampleBox 
-                title="Contoh 2: Balik + Geser"
-                soal="y = 2^x direfleksikan terhadap sumbu X lalu digeser 4 ke kanan. Hasilnya?"
+                title="Contoh 2: Sumbu X lalu Sumbu Y"
+                soal="Bayangan y = 2x + 1 oleh refleksi sumbu X dilanjutkan sumbu Y adalah..."
                 ditanya="Persamaan g(x)."
                 langkah={[
-                  "Langkah 1: y₁ = -2^x.",
-                  "Langkah 2: y = -2^{x - 4}.",
-                  "Jawaban: y = -2^{x - 4}."
+                  "Refleksi sumbu X: y' = -(2x + 1) = -2x - 1.",
+                  "Refleksi sumbu Y: y'' = -2(-x) - 1 = 2x - 1.",
+                  "Ini setara dengan refleksi terhadap titik pusat O(0,0)."
                 ]}
-                plotFunc="2^x"
-                plotParams={{...emptyParams, reflectX: true, c: 4}}
+                plotFunc="2x+1"
+                plotParams={{...emptyParams, reflectX: true, reflectY: true}}
               />
+            </div>
+          </div>
+        );
+      }
+      if (subTopic === 'komp-rotasi') {
+        return (
+          <div className="space-y-12">
+            <h3 className="text-xl font-black text-amber-900 border-b-2 border-amber-100 pb-2 uppercase tracking-tighter">Komposisi Dua Rotasi</h3>
+            <p className="text-sm text-slate-600 bg-amber-50 p-4 rounded-2xl border border-amber-100 italic">
+              Dua rotasi berurutan dengan pusat yang sama (0,0) setara dengan satu rotasi dengan sudut yang merupakan jumlah dari kedua sudut rotasi tersebut: α + β.
+            </p>
+            <div className="space-y-10">
               <ExampleBox 
-                title="Contoh 3: Pertumbuhan -> Peluruhan + Geser"
-                soal="y = 2^x direfleksikan terhadap sumbu Y lalu digeser 2 ke bawah. Hasilnya?"
+                title="Contoh 1: Rotasi Berurutan"
+                soal="f(x) = x + 2 dirotasi 30° dilanjutkan 60° terhadap pusat O(0,0). Tentukan bayangannya!"
                 ditanya="Persamaan g(x)."
                 langkah={[
-                  "Langkah 1: y₁ = 2^{-x} = (1/2)^x.",
-                  "Langkah 2: y = (1/2)^x - 2.",
-                  "Jawaban: y = (1/2)^x - 2."
+                  "Total rotasi = 30° + 60° = 90°.",
+                  "Matriks rotasi 90°: (x, y) → (-y, x).",
+                  "Substitusi: x = y' dan y = -x'.",
+                  "Hasil: -x = y + 2 → x = -y - 2."
                 ]}
-                plotFunc="2^x"
-                plotParams={{...emptyParams, reflectY: true, d: -2}}
+                plotFunc="x+2"
+                plotParams={{...emptyParams, rotation: 90}}
               />
               <ExampleBox 
-                title="Contoh 4: Skala Horizontal + Vertikal"
-                soal="y = 2^x didilatasi horizontal faktor 1/2 lalu vertikal faktor 4. Persamaan barunya?"
+                title="Contoh 2: Rotasi Berlawanan"
+                soal="y = x² dirotasi 45° lalu dirotasi -45° (searah jarum jam). Apa bayangannya?"
                 ditanya="Persamaan g(x)."
                 langkah={[
-                  "Langkah 1 (Horizontal 1/2): y₁ = 2^{2x} = 4^x.",
-                  "Langkah 2 (Vertikal 4): y = 4 ⋅ 4^x = 4^{x+1}.",
-                  "Hasil: y = 4^{x + 1}."
+                  "Total rotasi = 45° + (-45°) = 0°.",
+                  "Rotasi 0° berarti posisi tetap (identitas).",
+                  "Hasil: y = x²."
                 ]}
-                plotFunc="2^x"
-                plotParams={{...emptyParams, b: 2, a: 4}}
-              />
-              <ExampleBox 
-                title="Contoh 5: Menentukan Asimtot Akhir"
-                soal="Fungsi y = 3^x dirotasi 180°, lalu digeser 2 ke atas. Di mana asimtotnya?"
-                ditanya="Garis asimtot y."
-                langkah={[
-                  "Rotasi 180 (pusat 0,0): y = -3^{-x}. Asimtot tetap y = 0.",
-                  "Geser 2 ke atas: y = -3^{-x} + 2. Asimtot menjadi y = 2.",
-                  "Jawaban: y = 2."
-                ]}
-                plotFunc="3^x"
-                plotParams={{...emptyParams, reflectX: true, reflectY: true, d: 2}}
+                plotFunc="x^2"
+                plotParams={{...emptyParams, rotation: 0}}
+                plotScale={15}
               />
             </div>
           </div>
@@ -2284,27 +2208,33 @@ function DetailedLessonContent({ id, subTopic, onSubTopicSelect, onStartQuiz, on
             <div className="absolute top-0 right-0 p-4 opacity-10">
                <Trophy className="w-24 h-24" />
             </div>
-            <h4 className="text-2xl font-black uppercase mb-4">Misi Terakhir: Kombinasi</h4>
-            <p className="text-sm text-amber-200 mb-6 italic">Menguasai gabungan dari seluruh teknik transformasi dalam satu langkah besar.</p>
-            <div className="bg-black/30 p-6 rounded-2xl border border-white/10">
-              <code className="text-xl font-mono text-amber-400 block text-center">
-                 g(x) = a ⋅ f(b(x - c)) + d
-              </code>
+            <h4 className="text-2xl font-black uppercase mb-4">Materi Utama: Komposisi Transformasi</h4>
+            <p className="text-sm text-amber-200 mb-6 italic">Menguasai penggabungan dua atau lebih transformasi pada fungsi aljabar (linear, kuadrat, eksponensial).</p>
+            <div className="bg-black/30 p-6 rounded-2xl border border-white/10 italic text-sm text-center">
+              "Suatu fungsi yang ditransformasikan secara berurutan dapat dinyatakan sebagai komposisi transformasi."
             </div>
           </section>
 
           <div className="space-y-8">
-            <h4 className="text-lg font-black text-slate-800 uppercase tracking-tight border-l-4 border-amber-500 pl-4">Cara Mengerjakan</h4>
+            <h4 className="text-lg font-black text-slate-800 uppercase tracking-tight border-l-4 border-amber-500 pl-4">Konsep Dasar</h4>
             <div className="bg-white p-6 rounded-3xl border border-slate-100 shadow-sm space-y-4">
-               <p className="text-sm text-slate-600">Lakukan transformasi satu per satu sesuai urutan yang diminta soal. Jika tidak ada urutan khusus, biasanya:</p>
-               <ol className="list-decimal list-inside text-xs text-slate-500 space-y-2 ml-2">
-                 <li>Lakukan pergeseran horizontal (c)</li>
-                 <li>Lakukan dilatasi/skala (a dan b)</li>
-                 <li>Lakukan refleksi (cermin)</li>
-                 <li>Lakukan pergeseran vertikal (d)</li>
-               </ol>
+               <p className="text-sm text-slate-600">Jika T₁ dan T₂ adalah dua jenis transformasi, maka komposisi transformasi (T₂ ∘ T₁) berarti melakukan transformasi T₁ terlebih dahulu, kemudian hasilnya dilanjutkan dengan transformasi T₂.</p>
+               <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-4">
+                  <div className="p-4 bg-amber-50 rounded-2xl border border-amber-100">
+                    <p className="text-[10px] font-black uppercase text-amber-800 mb-1">Translasi</p>
+                    <p className="text-xs text-slate-500">Hasilnya berupa penjumlahan vektor geser.</p>
+                  </div>
+                  <div className="p-4 bg-blue-50 rounded-2xl border border-blue-100">
+                    <p className="text-[10px] font-black uppercase text-blue-800 mb-1">Refleksi</p>
+                    <p className="text-xs text-slate-500">Dapat menghasilkan translasi atau rotasi.</p>
+                  </div>
+                  <div className="p-4 bg-indigo-50 rounded-2xl border border-indigo-100">
+                    <p className="text-[10px] font-black uppercase text-indigo-800 mb-1">Rotasi</p>
+                    <p className="text-xs text-slate-500">Hasilnya berupa penjumlahan sudut putar.</p>
+                  </div>
+               </div>
             </div>
-            <p className="text-center text-[10px] font-black text-slate-400 uppercase tracking-widest italic">Pilih jenis fungsi di atas untuk eksplorasi detil.</p>
+            <p className="text-center text-[10px] font-black text-slate-400 uppercase tracking-widest italic">Pilih jenis komposisi di atas untuk eksplorasi detil.</p>
           </div>
         </div>
       );
