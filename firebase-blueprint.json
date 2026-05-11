@@ -1,0 +1,60 @@
+{
+  "entities": {
+    "Session": {
+      "title": "Collaboration Session",
+      "description": "A real-time room for collaborative learning.",
+      "type": "object",
+      "properties": {
+        "hostId": { "type": "string", "description": "UID of the teacher/host" },
+        "activeLab": { "type": "string", "description": "The current active module (translasi, refleksi, etc.)" },
+        "labState": { 
+          "type": "object", 
+          "description": "Serialized parameters of the lab",
+          "properties": {
+            "params": { "$ref": "#/entities/TransformationParams" },
+            "sceneId": { "type": "string" }
+          }
+        },
+        "createdAt": { "type": "string", "format": "date-time" },
+        "updatedAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["hostId", "activeLab", "createdAt"]
+    },
+    "TransformationParams": {
+      "title": "Transformation Parameters",
+      "type": "object",
+      "properties": {
+        "a": { "type": "number" },
+        "b": { "type": "number" },
+        "c": { "type": "number" },
+        "d": { "type": "number" },
+        "x1": { "type": "number" },
+        "y1": { "type": "number" },
+        "reflectX": { "type": "boolean" },
+        "reflectY": { "type": "boolean" },
+        "rotation": { "type": "number" }
+      }
+    },
+    "Participant": {
+      "title": "Session Participant",
+      "type": "object",
+      "properties": {
+        "uid": { "type": "string" },
+        "name": { "type": "string" },
+        "role": { "type": "string", "enum": ["host", "student"] },
+        "joinedAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["uid", "name", "role", "joinedAt"]
+    }
+  },
+  "firestore": {
+    "sessions": {
+      "schema": "Session",
+      "description": "Collection of active learning sessions"
+    },
+    "sessions/{sessionId}/participants": {
+      "schema": "Participant",
+      "description": "Subcollection of students in a session"
+    }
+  }
+}
