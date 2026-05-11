@@ -359,12 +359,12 @@ export const Quiz: React.FC<QuizProps> = ({ onClose, onFinish, initialMode, acti
           <div className={cn("bg-white rounded-md border border-slate-200 shadow-sm flex items-center overflow-hidden", isDuel ? "p-1.5 gap-1.5" : "p-1 gap-1.5")}>
               <div className={cn(
                 "shrink-0 rounded flex items-center justify-center font-black",
-                isDuel ? "w-6 h-6 text-[9px]" : "w-6 h-6 text-[9px]",
+                isDuel ? "w-8 h-8 text-[11px]" : "w-10 h-10 text-[12px]",
                 p === 1 ? "bg-emerald-100 text-emerald-700" : "bg-blue-100 text-blue-700"
               )}>{currentIdx + 1}/{questions.length}</div>
               <div className="flex-1 min-w-0">
-                <p className={cn("font-black uppercase text-slate-400 leading-none mb-0.5 whitespace-nowrap", isDuel ? "text-[7px]" : "text-[6px]")}>Progress</p>
-                <div className={cn("bg-slate-100 rounded-full overflow-hidden", isDuel ? "h-1.5" : "h-1")}>
+                <p className={cn("font-black uppercase text-slate-400 leading-none mb-1.5 whitespace-nowrap", isDuel ? "text-[10px]" : "text-[11px]")}>Progress Soal</p>
+                <div className={cn("bg-slate-100 rounded-full overflow-hidden", isDuel ? "h-2.5" : "h-3")}>
                     <motion.div 
                       animate={{ width: `${((currentIdx) / questions.length) * 100}%` }}
                       className={cn("h-full", p === 1 ? "bg-emerald-500" : "bg-blue-500")}
@@ -372,13 +372,13 @@ export const Quiz: React.FC<QuizProps> = ({ onClose, onFinish, initialMode, acti
                 </div>
             </div>
           </div>
-          <div className={cn("bg-white rounded-md border border-slate-200 shadow-sm flex items-center overflow-hidden", isDuel ? "p-1.5 gap-1.5" : "p-1 gap-1.5")}>
-              <div className={cn("bg-orange-100 text-orange-600 rounded flex items-center justify-center shrink-0", isDuel ? "w-6 h-6" : "w-6 h-6")}>
-                 <Trophy className={isDuel ? "w-3 h-3" : "w-3 h-3"} />
+          <div className={cn("bg-white rounded-md border border-slate-200 shadow-sm flex items-center overflow-hidden", isDuel ? "p-2 gap-2" : "p-3 gap-3")}>
+              <div className={cn("bg-orange-100 text-orange-600 rounded flex items-center justify-center shrink-0", isDuel ? "w-8 h-8" : "w-10 h-10")}>
+                 <Trophy className={isDuel ? "w-4 h-4" : "w-5 h-5"} />
               </div>
               <div className="flex-1 min-w-0">
-                <p className={cn("font-black uppercase text-slate-400 leading-none mb-0.5 mt-0.5", isDuel ? "text-[7px]" : "text-[6px]")}>Skor</p>
-                <p className={cn("font-black text-slate-800 leading-none", isDuel ? "text-[11px]" : "text-[10px]")}>{pScore}</p>
+                <p className={cn("font-black uppercase text-slate-400 leading-none mb-1.5", isDuel ? "text-[10px]" : "text-[11px]")}>Skor Kamu</p>
+                <p className={cn("font-black text-slate-800 leading-none", isDuel ? "text-[14px]" : "text-[16px]")}>{pScore}</p>
               </div>
           </div>
         </div>
@@ -397,11 +397,11 @@ export const Quiz: React.FC<QuizProps> = ({ onClose, onFinish, initialMode, acti
             </div>
           )}
 
-          <div className={cn("bg-white rounded border-2 border-slate-200 shadow-sm relative flex flex-col", isDuel ? "p-2" : "p-2 group")}>
-              <div className={cn("inline-block self-start bg-emerald-950 text-white rounded px-1.5 py-0.5 mb-1 font-black uppercase tracking-widest", isDuel ? "text-[6px]" : "text-[6px]")}>
+          <div className={cn("bg-white rounded-xl border-2 border-slate-200 shadow-sm relative flex flex-col", isDuel ? "p-3" : "p-6 group")}>
+              <div className={cn("inline-block self-start bg-emerald-950 text-white rounded px-2 py-1 mb-2 font-black uppercase tracking-widest", isDuel ? "text-[8px]" : "text-[10px]")}>
                 {q.type === 'single' ? 'Pilihan Ganda' : q.type === 'complex' ? 'Ganda Kompleks' : 'Drag & Drop'}
               </div>
-              <h3 className={cn("font-bold text-slate-800 leading-tight", isDuel ? "text-[12px]" : "text-[11px]")}>{q.text}</h3>
+              <h3 className={cn("font-black text-slate-900 leading-tight", isDuel ? "text-[14px]" : "text-[18px]")}>{q.text}</h3>
           </div>
 
           <div className="grid grid-cols-1 gap-1.5 pb-2">
@@ -420,8 +420,8 @@ export const Quiz: React.FC<QuizProps> = ({ onClose, onFinish, initialMode, acti
                   >
                      <div className="relative z-10 flex items-center gap-2">
                         <div className={cn(
-                          "rounded flex items-center justify-center font-black shadow-sm",
-                          isDuel ? "w-5 h-5 text-[9px]" : "w-5 h-5 text-[9px]",
+                          "rounded-lg flex items-center justify-center font-black shadow-sm",
+                          isDuel ? "w-6 h-6 text-[10px]" : "w-8 h-8 text-[14px]",
                           selected === idx ? "bg-emerald-500 text-white" : "bg-slate-100 text-slate-400 group-hover:bg-emerald-500 group-hover:text-white"
                         )}>
                            {String.fromCharCode(65 + idx)}

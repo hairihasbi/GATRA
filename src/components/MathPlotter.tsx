@@ -69,7 +69,7 @@ export const MathPlotter: React.FC<MathPlotterProps> = ({
 
     // 1. Draw Grid
     if (showGrid) {
-      ctx.strokeStyle = '#e2e8f0';
+      ctx.strokeStyle = '#cbd5e1'; // Darker grid for IFPs
       ctx.lineWidth = 1;
 
       // Vertical lines
@@ -90,8 +90,8 @@ export const MathPlotter: React.FC<MathPlotterProps> = ({
     }
 
     // 2. Draw Axes
-    ctx.strokeStyle = '#064e3b'; // Dark emerald for axes
-    ctx.lineWidth = 2;
+    ctx.strokeStyle = '#000000'; // Pure black for maximum contrast
+    ctx.lineWidth = 2.5;
     ctx.beginPath();
     ctx.moveTo(0, centerY);
     ctx.lineTo(width, centerY);
@@ -139,8 +139,8 @@ export const MathPlotter: React.FC<MathPlotterProps> = ({
       }
 
       // 4. Draw Transformed Function g(x)
-      ctx.strokeStyle = '#f97316'; // Orange for transformed
-      ctx.lineWidth = 4;
+      ctx.strokeStyle = '#ea580c'; // Bolder Orange
+      ctx.lineWidth = 5.5; // Thicker for large screens
       ctx.beginPath();
 
       const points: {px: number, py: number, x: number, y: number}[] = [];
@@ -213,10 +213,10 @@ export const MathPlotter: React.FC<MathPlotterProps> = ({
 
   const drawKeyPoint = (ctx: CanvasRenderingContext2D, px: number, py: number, label: string) => {
     if (py < 0 || py > dimensions.height) return;
-    ctx.fillStyle = '#064e3b';
-    ctx.beginPath(); ctx.arc(px, py, 4, 0, Math.PI * 2); ctx.fill();
-    ctx.strokeStyle = 'white'; ctx.lineWidth = 1.5; ctx.stroke();
-    ctx.font = 'black 9px sans-serif'; ctx.fillText(label, px + 8, py - 8);
+    ctx.fillStyle = '#0f172a';
+    ctx.beginPath(); ctx.arc(px, py, 6, 0, Math.PI * 2); ctx.fill();
+    ctx.strokeStyle = 'white'; ctx.lineWidth = 2; ctx.stroke();
+    ctx.font = 'bold 12px sans-serif'; ctx.fillStyle = '#0f172a'; ctx.fillText(label, px + 10, py - 10);
   };
 
   return (
