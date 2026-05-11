@@ -301,7 +301,7 @@ const MerryScene: React.FC<{ angle: number }> = ({ angle }) => (
   </motion.div>
 );
 
-const RubikPiece = ({ position }: { position: [number, number, number] }) => {
+const RubikPiece = ({ position }: { position: [number, number, number], key?: any }) => {
   const colors = [
     '#B71234', // Right - Red
     '#FF5800', // Left - Orange
