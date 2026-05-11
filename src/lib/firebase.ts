@@ -24,8 +24,13 @@ export const db = getFirestore(app, firebaseConfig.firestoreDatabaseId);
 export const initAnonymousAuth = async (): Promise<User> => {
   if (auth.currentUser) return auth.currentUser;
   
-  const { user } = await signInAnonymously(auth);
-  return user;
+  try {
+    const { user } = await signInAnonymously(auth);
+    return user;
+  } catch (error) {
+    console.error("Anonymous authentication failed. Please ensure 'Anonymous' provider is enabled in Firebase Console Auth settings.", error);
+    throw error;
+  }
 };
 
 /**
