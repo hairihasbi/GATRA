@@ -193,9 +193,9 @@ export default function App() {
               initial={{ opacity: 0, scale: 0.95 }}
               animate={{ opacity: 1, scale: 1 }}
               exit={{ opacity: 0, scale: 1.05 }}
-              className="absolute inset-0 flex flex-col items-center justify-center p-4 sm:p-8 overflow-y-auto z-10"
+              className="absolute inset-0 flex flex-col items-center justify-start xl:justify-center p-4 sm:p-8 overflow-y-auto z-10"
             >
-              <div className="max-w-4xl w-full py-8 relative">
+              <div className="max-w-4xl w-full py-8 sm:py-12 relative">
                 {/* Decorative jungle elements */}
                 <div className="absolute -top-10 -left-10 w-40 h-40 bg-emerald-500/10 rounded-full blur-3xl pointer-events-none" />
                 <div className="absolute -bottom-10 -right-10 w-60 h-60 bg-emerald-400/10 rounded-full blur-3xl pointer-events-none" />
@@ -207,21 +207,21 @@ export default function App() {
                     <div className="flex flex-wrap justify-center gap-3 sm:gap-4 mt-6">
                       <button 
                         onClick={() => setShowStory(true)}
-                        className="flex items-center gap-2 px-4 py-2 bg-white/10 backdrop-blur-sm border border-white/20 rounded-full text-[10px] font-black uppercase text-emerald-100 hover:bg-white/20 transition-all border-b-2 border-white/5"
+                        className="flex items-center gap-2 px-4 py-2 bg-white/20 backdrop-blur-md border border-white/30 rounded-full text-[10px] font-black uppercase text-white hover:bg-white/30 transition-all border-b-2 border-white/10 shadow-lg"
                       >
                         <BookOpen className="w-4 h-4 text-orange-400" />
                         Legenda GATRA
                       </button>
                       <button 
                         onClick={() => setShowObjectives(true)}
-                        className="flex items-center gap-2 px-4 py-2 bg-white/10 backdrop-blur-sm border border-white/20 rounded-full text-[10px] font-black uppercase text-emerald-100 hover:bg-white/20 transition-all border-b-2 border-white/5"
+                        className="flex items-center gap-2 px-4 py-2 bg-white/20 backdrop-blur-md border border-white/30 rounded-full text-[10px] font-black uppercase text-white hover:bg-white/30 transition-all border-b-2 border-white/10 shadow-lg"
                       >
                         <GraduationCap className="w-4 h-4 text-blue-400" />
                         Tujuan Pembelajaran
                       </button>
                       <button 
                         onClick={() => setShowProfile(true)}
-                        className="flex items-center gap-2 px-4 py-2 bg-white/10 backdrop-blur-sm border border-white/20 rounded-full text-[10px] font-black uppercase text-emerald-100 hover:bg-white/20 transition-all border-b-2 border-white/5"
+                        className="flex items-center gap-2 px-4 py-2 bg-white/20 backdrop-blur-md border border-white/30 rounded-full text-[10px] font-black uppercase text-white hover:bg-white/30 transition-all border-b-2 border-white/10 shadow-lg"
                       >
                         <User className="w-4 h-4 text-emerald-400" />
                         Profil Pengajar
@@ -280,7 +280,7 @@ export default function App() {
                         "w-20 h-20 sm:w-24 sm:h-24 rounded-3xl flex items-center justify-center shadow-2xl mb-4 transition-all border-4 relative",
                         activeModule === m.id && gameState !== 'map' 
                           ? "bg-orange-500 border-white text-white rotate-6" 
-                          : "bg-emerald-900/40 backdrop-blur-md border-emerald-500/30 text-emerald-100 group-hover:border-emerald-400 group-hover:bg-emerald-800/60"
+                          : "bg-emerald-800/90 backdrop-blur-md border-emerald-400/50 text-white group-hover:border-emerald-300 group-hover:bg-emerald-700 group-hover:scale-105"
                       )}>
                         {m.icon}
                         <div className="absolute -bottom-2 -right-2 w-8 h-8 bg-emerald-950 rounded-full border-2 border-emerald-500 flex items-center justify-center text-[10px] font-black text-emerald-400 shadow-lg">
@@ -296,7 +296,7 @@ export default function App() {
                 <div className="mt-16 flex justify-center">
                    <button 
                     onClick={() => setGameState('lab')}
-                    className="group bg-emerald-900/40 backdrop-blur-md text-white p-5 sm:p-7 rounded-[40px] flex items-center gap-6 shadow-2xl hover:bg-emerald-800/60 transition-all border border-emerald-500/30 w-full sm:w-auto mx-4"
+                    className="group bg-emerald-800 backdrop-blur-md text-white p-5 sm:p-7 rounded-[40px] flex items-center gap-6 shadow-2xl hover:bg-emerald-700 transition-all border-2 border-emerald-400/50 w-full sm:w-auto mx-4"
                    >
                      <div className="w-12 h-12 sm:w-16 sm:h-16 bg-emerald-800 rounded-3xl flex items-center justify-center group-hover:rotate-12 transition-transform shadow-lg border border-emerald-400/20">
                        <Tent className="w-8 h-8 sm:w-10 sm:h-10 text-orange-400" />
@@ -729,12 +729,12 @@ function StoryModal({ onClose }: { onClose: () => void }) {
           <X className="w-5 h-5" />
         </button>
 
-        <div className="p-8 sm:p-10 relative z-10 text-center">
-          <div className="w-20 h-20 bg-emerald-100 rounded-3xl flex items-center justify-center mx-auto mb-8 shadow-xl border-2 border-emerald-200">
-            <BookOpen className="w-10 h-10 text-emerald-800" />
+        <div className="p-6 sm:p-8 relative z-10 text-center">
+          <div className="w-16 h-16 bg-emerald-100 rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-xl border-2 border-emerald-200">
+            <BookOpen className="w-8 h-8 text-emerald-800" />
           </div>
           
-          <h2 className="text-3xl sm:text-4xl font-black text-emerald-950 uppercase tracking-tighter mb-6 italic font-serif">Legenda GATRA</h2>
+          <h2 className="text-2xl sm:text-3xl font-black text-emerald-950 uppercase tracking-tighter mb-4 italic font-serif leading-tight">Legenda GATRA</h2>
           
           <div className="space-y-6 text-slate-600 leading-relaxed text-sm sm:text-base font-medium italic">
             <p>
@@ -791,15 +791,15 @@ function ObjectivesModal({ onClose }: { onClose: () => void }) {
           <X className="w-5 h-5" />
         </button>
 
-        <div className="p-8 sm:p-10 relative z-10">
-          <div className="flex justify-center mb-8">
-            <div className="w-16 h-16 bg-blue-100 rounded-2xl flex items-center justify-center shadow-xl border-2 border-blue-200">
-              <GraduationCap className="w-8 h-8 text-blue-800" />
+        <div className="p-6 sm:p-8 relative z-10">
+          <div className="flex justify-center mb-6">
+            <div className="w-14 h-14 bg-blue-100 rounded-xl flex items-center justify-center shadow-xl border-2 border-blue-200">
+              <GraduationCap className="w-7 h-7 text-blue-800" />
             </div>
           </div>
           
-          <div className="text-center mb-8">
-            <h2 className="text-3xl font-black text-emerald-950 uppercase tracking-tighter mb-2 italic font-serif">Tujuan Pembelajaran</h2>
+          <div className="text-center mb-6">
+            <h2 className="text-2xl font-black text-emerald-950 uppercase tracking-tighter mb-2 italic font-serif leading-tight">Tujuan Pembelajaran</h2>
             <div className="h-1 w-20 bg-blue-500 mx-auto rounded-full shadow-lg shadow-blue-500/50" />
           </div>
 
@@ -861,12 +861,12 @@ function ProfileModal({ onClose }: { onClose: () => void }) {
           <X className="w-5 h-5" />
         </button>
 
-        <div className="p-8 sm:p-10 relative z-10">
-          <div className="flex justify-center mb-8 relative">
+        <div className="p-6 sm:p-8 relative z-10 text-center">
+          <div className="flex justify-center mb-6 relative">
              <div className="absolute inset-0 bg-emerald-500/20 blur-3xl rounded-full" />
-             <div className="w-32 h-32 bg-emerald-100 rounded-[48px] overflow-hidden border-4 border-white shadow-2xl relative z-10 flex items-center justify-center group hover:rotate-6 transition-transform">
-                <div className="absolute inset-0 bg-emerald-800 opacity-0 group-hover:opacity-10 transition-opacity" />
-                <User className="w-16 h-16 text-emerald-800" />
+             <div className="w-24 h-24 sm:w-28 sm:h-28 bg-emerald-100 rounded-[32px] overflow-hidden border-4 border-white shadow-xl relative z-10 flex items-center justify-center group hover:rotate-6 transition-transform">
+                <div className="absolute inset-0 bg-emerald-800/10 opacity-0 group-hover:opacity-100 transition-opacity" />
+                <User className="w-12 h-12 text-emerald-800" />
              </div>
              <div className="absolute bottom-0 right-1/2 translate-x-12 translate-y-2 w-10 h-10 bg-orange-500 rounded-2xl border-4 border-white shadow-lg flex items-center justify-center z-20">
                 <Award className="w-5 h-5 text-white" />
@@ -877,23 +877,23 @@ function ProfileModal({ onClose }: { onClose: () => void }) {
             <div className="inline-block px-3 py-1 bg-emerald-100 text-emerald-700 rounded-full text-[10px] font-black uppercase tracking-widest mb-3">
                Guru Matematika
             </div>
-            <h2 className="text-3xl font-black text-emerald-950 uppercase tracking-tighter mb-1 font-serif italic">Hairi Hasbi</h2>
-            <div className="flex items-center justify-center gap-2 text-slate-500 font-bold text-sm mb-8">
+            <h2 className="text-2xl sm:text-3xl font-black text-emerald-950 uppercase tracking-tighter mb-1 font-serif italic">Hairi Hasbi</h2>
+            <div className="flex items-center justify-center gap-2 text-slate-500 font-bold text-xs mb-6">
                <MapIcon className="w-3 h-3 text-orange-500" />
                SMAN 5 Banjarbaru
             </div>
             
-            <div className="bg-white/60 p-6 rounded-3xl border border-emerald-100 shadow-inner mb-8 text-left">
-               <div className="flex items-center gap-4 mb-4">
-                  <div className="w-10 h-10 bg-white rounded-xl shadow-sm border border-emerald-100 flex items-center justify-center">
-                     <Award className="w-5 h-5 text-orange-500" />
+            <div className="bg-white/80 p-5 rounded-3xl border border-emerald-100 shadow-inner mb-6 text-left">
+               <div className="flex items-center gap-3 mb-3">
+                  <div className="w-8 h-8 bg-white rounded-xl shadow-sm border border-emerald-100 flex items-center justify-center">
+                     <Award className="w-4 h-4 text-orange-500" />
                   </div>
                   <div>
-                     <p className="text-[10px] font-black text-slate-400 uppercase tracking-widest leading-none">Status Pengajar</p>
-                     <p className="text-sm font-bold text-emerald-950 uppercase">Profil Profesional</p>
+                     <p className="text-[9px] font-black text-slate-400 uppercase tracking-widest leading-none">Status Pengajar</p>
+                     <p className="text-[11px] font-bold text-emerald-950 uppercase">Profil Profesional</p>
                   </div>
                </div>
-               <p className="text-[13px] text-slate-600 leading-relaxed italic font-medium">
+               <p className="text-[12px] text-slate-600 leading-relaxed italic font-medium">
                  "Mengabdi untuk mencerdaskan generasi bangsa melalui pendekatan matematika yang inovatif dan interaktif. Selamat datang di GATRA!"
                </p>
             </div>
