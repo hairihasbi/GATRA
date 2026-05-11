@@ -71,7 +71,12 @@ export const CollabProvider: React.FC<{ children: React.ReactNode }> = ({ childr
   const createSession = async (labState: LabState) => {
     try {
       const u = await initAnonymousAuth();
-      const sessionRef = await addDoc(collection(db, 'sessions'), {
+      // Generate code: MATH + 2 random digits = 6 characters total
+      const randomPart = Math.floor(10 + Math.random() * 90).toString();
+      const code = `MATH${randomPart}`;
+      
+      const sessionRef = doc(db, 'sessions', code);
+      await setDoc(sessionRef, {
         hostId: u.uid,
         activeLab: labState.sceneId,
         labState,
@@ -80,14 +85,14 @@ export const CollabProvider: React.FC<{ children: React.ReactNode }> = ({ childr
       });
 
       // Add host as participant
-      await setDoc(doc(db, 'sessions', sessionRef.id, 'participants', u.uid), {
+      await setDoc(doc(db, 'sessions', code, 'participants', u.uid), {
         uid: u.uid,
         name: `Host (${u.uid.slice(0, 4)})`,
         role: 'host',
         joinedAt: serverTimestamp()
       });
 
-      setSessionId(sessionRef.id);
+      setSessionId(code);
       setRole('host');
     } catch (err) {
       handleFirestoreError(err, OperationType.CREATE, 'sessions');
