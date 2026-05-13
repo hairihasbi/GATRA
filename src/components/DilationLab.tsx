@@ -92,20 +92,20 @@ export const DilationLab: React.FC<DilationLabProps> = ({ params, onUpdateParams
         </AnimatePresence>
 
         {/* Legend Overlay */}
-        <div className="absolute top-6 right-6 z-10">
-           <div className="bg-black/80 backdrop-blur-md p-3 rounded-xl border border-white/10 max-w-[220px] shadow-2xl">
-              <div className="flex items-center gap-2 mb-1.5">
-                 <Info className="w-3.5 h-3.5 text-orange-400" />
-                 <p className="text-[9px] font-black text-white uppercase tracking-widest leading-none">Wawasan Dilatasi</p>
+        <div className="absolute bottom-4 left-4 z-20">
+           <div className="bg-black/80 backdrop-blur-md p-2 rounded-xl border border-white/10 max-w-[120px] shadow-2xl">
+              <div className="flex items-center gap-1 mb-0.5">
+                 <Info className="w-2.5 h-2.5 text-orange-400" />
+                 <p className="text-[7px] font-black text-white uppercase tracking-widest leading-none">Info</p>
               </div>
-              <p className="text-[10px] text-white/70 leading-tight italic mb-2">
+              <p className="text-[8px] text-white/70 leading-tight italic line-clamp-1">
                  {scenes.find(s => s.id === activeScene)?.desc}
               </p>
-              <div className="pt-2 border-t border-white/5">
-                <span className="text-orange-400 font-bold text-[9px] block">
-                   {scaleFactor > 1 ? "Objek diperbesar (k > 1)" : scaleFactor < 1 ? "Objek diperkecil (k < 1)" : "Ukuran tetap (k = 1)"}
+              <div className="pt-1.5 border-t border-white/5">
+                <span className="text-orange-400 font-bold text-[8px] block">
+                   {scaleFactor > 1 ? "k > 1" : scaleFactor < 1 ? "k < 1" : "k = 1"}
                 </span>
-                <p className="text-[7px] text-white/30 uppercase mt-1">P'(x,y) = (kx, ky)</p>
+                <p className="text-[7px] text-white/30 uppercase mt-0.5">P'(x,y) = (kx, ky)</p>
               </div>
            </div>
         </div>

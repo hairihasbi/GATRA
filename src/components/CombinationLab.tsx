@@ -152,30 +152,21 @@ export const CombinationLab: React.FC<CombinationLabProps> = ({ params, onUpdate
           {activeScene === 'komposisi' && <KomposisiScene key="komposisi" />}
         </AnimatePresence>
 
-        {/* HUD Info */}
-        <div className="absolute top-6 right-6 z-10">
+        {/* HUD Info - Moved and shrunk */}
+        <div className="absolute bottom-4 left-4 z-30">
            <motion.div 
              key={activeScene}
              initial={{ opacity: 0, scale: 0.95 }}
              animate={{ opacity: 1, scale: 1 }}
-             className="bg-black/80 backdrop-blur-md p-3 rounded-xl border border-white/10 max-w-[220px] shadow-2xl"
+             className="bg-black/80 backdrop-blur-md p-2 rounded-xl border border-white/10 max-w-[120px] shadow-2xl"
            >
-              <div className="flex items-center justify-between gap-4 mb-1.5">
-                 <div className="flex items-center gap-1.5">
-                    <Info className="w-3.5 h-3.5 text-amber-400" />
-                    <p className="text-[9px] font-black text-white uppercase tracking-widest leading-none">{currentScene?.label}</p>
-                 </div>
-                 <div className="px-1.5 py-0.5 bg-amber-500 rounded text-[7px] font-black text-black uppercase">
-                    {currentScene?.combo?.split(' ')[0]}
-                 </div>
+              <div className="flex items-center gap-1 mb-0.5">
+                 <Info className="w-2.5 h-2.5 text-amber-400" />
+                 <p className="text-[7px] font-black text-white uppercase tracking-widest leading-none">Info</p>
               </div>
-              <p className="text-[10px] text-white/70 leading-tight mb-2">
+              <p className="text-[8px] text-white/70 leading-tight line-clamp-1">
                  {currentScene?.desc}
               </p>
-              <div className="pt-2 border-t border-white/5 flex flex-col gap-1">
-                 <code className="text-amber-400 text-[9px] font-mono font-bold break-all">{currentScene?.math}</code>
-                 <span className="text-[7px] font-bold text-white/30 tracking-widest uppercase">Formula Dasar</span>
-              </div>
            </motion.div>
         </div>
       </div>

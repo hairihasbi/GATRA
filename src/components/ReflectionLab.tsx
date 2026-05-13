@@ -117,32 +117,32 @@ export const ReflectionLab: React.FC<ReflectionLabProps> = ({ params, onUpdatePa
 
       {/* Legend / Info Panel */}
       <div className="absolute bottom-4 right-4 z-20">
-         <div className="bg-slate-900/90 backdrop-blur-md border border-white/20 p-3 rounded-xl shadow-2xl max-w-[240px] transition-all hover:border-blue-400">
-            <div className="flex items-center gap-2 mb-1.5">
-               <HelpCircle className="w-3.5 h-3.5 text-blue-400" />
-               <p className="text-[9px] font-black uppercase text-blue-100 tracking-widest">Wawasan Refleksi</p>
+         <div className="bg-slate-900/90 backdrop-blur-md border border-white/20 p-2.5 rounded-xl shadow-2xl max-w-[180px] transition-all hover:border-blue-400">
+            <div className="flex items-center gap-1.5 mb-1">
+               <HelpCircle className="w-3 h-3 text-blue-400" />
+               <p className="text-[8px] font-black uppercase text-blue-100 tracking-widest">Wawasan</p>
             </div>
-            <p className="text-[10px] text-slate-300 leading-tight italic">
-               {activeScene === 'lake' && "Bayangan pada permukaan air tenang adalah contoh Refleksi Sumbu X (vertikal)."}
-               {activeScene === 'photography' && "Saat berfoto di depan cermin, terjadi Refleksi Sumbu Y (horizontal)." }
-               {activeScene === 'butterfly' && "Sayap kupu-kupu menunjukkan simetri lipat (refleksi)."}
-               {activeScene === 'monolith' && "Dalam ruang 3D, refleksi membalikkan koordinat terhadap bidang tertentu."}
+            <p className="text-[9px] text-slate-300 leading-tight italic line-clamp-2">
+               {activeScene === 'lake' && "Refleksi Sumbu X vertikal."}
+               {activeScene === 'photography' && "Refleksi Sumbu Y horizontal." }
+               {activeScene === 'butterfly' && "Simetri lipat (refleksi)."}
+               {activeScene === 'monolith' && "Refleksi koordinat 3D."}
             </p>
-            <div className="mt-2 pt-2 border-t border-white/10 flex items-center justify-between">
+            <div className="mt-1.5 pt-1.5 border-t border-white/10 flex items-center justify-between">
               <div className="flex flex-col">
                 <span className="text-[7px] font-black text-slate-500 uppercase tracking-tighter">Matematika</span>
-                <span className="text-[9px] font-mono font-bold text-white">
+                <span className="text-[8px] font-mono font-bold text-white">
                    {activeScene === 'lake' ? "(x, y) → (x, -y)" : "(x, y) → (-x, y)"}
                 </span>
               </div>
               <button 
                 onClick={() => setShowGrid(!showGrid)}
                 className={cn(
-                  "p-1.5 rounded-lg transition-colors border",
+                  "p-1 rounded transition-colors border",
                   showGrid ? "bg-white/10 border-white/20 text-white" : "bg-transparent border-white/10 text-white/40"
                 )}
               >
-                <Ruler className="w-3 h-3" />
+                <Ruler className="w-2.5 h-2.5" />
               </button>
             </div>
          </div>

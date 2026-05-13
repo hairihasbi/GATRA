@@ -81,20 +81,20 @@ export const RotationLab: React.FC<RotationLabProps> = ({ params, onUpdateParams
         </AnimatePresence>
 
         {/* Interactive Rotation Control Dial/Slider */}
-        <div className="absolute bottom-6 right-6 z-30 flex flex-col items-center gap-3 bg-white/95 backdrop-blur-md p-4 rounded-3xl shadow-2xl border border-indigo-100 mb-20">
-           <div className="relative w-20 h-20 flex items-center justify-center">
+        <div className="absolute bottom-4 right-4 z-30 flex flex-col items-center gap-2 bg-white/95 backdrop-blur-md p-2.5 rounded-2xl shadow-2xl border border-indigo-100">
+           <div className="relative w-14 h-14 flex items-center justify-center">
               <svg className="absolute inset-0 w-full h-full -rotate-90">
-                 <circle cx="40" cy="40" r="36" fill="none" stroke="#e2e8f0" strokeWidth="4" />
+                 <circle cx="28" cy="28" r="24" fill="none" stroke="#e2e8f0" strokeWidth="3" />
                  <circle 
-                   cx="40" cy="40" r="36" fill="none" stroke="#4f46e5" strokeWidth="4" 
-                   strokeDasharray={2 * Math.PI * 36}
-                   strokeDashoffset={2 * Math.PI * 36 * (1 - (angle % 360) / 360)}
+                   cx="28" cy="28" r="24" fill="none" stroke="#4f46e5" strokeWidth="3" 
+                   strokeDasharray={2 * Math.PI * 24}
+                   strokeDashoffset={2 * Math.PI * 24 * (1 - (angle % 360) / 360)}
                    strokeLinecap="round"
                  />
               </svg>
               <div className="flex flex-col items-center">
-                 <span className="text-[10px] font-black text-slate-400 uppercase leading-none">Sudut</span>
-                 <span className="text-sm font-mono font-bold text-indigo-600">{angle}°</span>
+                 <span className="text-[7px] font-black text-slate-400 uppercase leading-none">Sudut</span>
+                 <span className="text-[10px] font-mono font-bold text-indigo-600">{angle}°</span>
               </div>
            </div>
 
@@ -104,15 +104,15 @@ export const RotationLab: React.FC<RotationLabProps> = ({ params, onUpdateParams
              max="360"
              value={angle}
              onChange={(e) => onUpdateParams({ rotation: parseInt(e.target.value) })}
-             className="w-32 accent-indigo-600"
+             className="w-24 h-4 accent-indigo-600 cursor-pointer"
            />
 
-           <div className="flex gap-2 w-full">
+           <div className="flex gap-1 w-full">
               {[0, 90, 180, 270].map(val => (
                 <button 
                   key={val}
                   onClick={() => onUpdateParams({ rotation: val })}
-                  className="flex-1 py-1 text-[8px] font-bold bg-slate-100 text-slate-600 rounded-md hover:bg-indigo-50 hover:text-indigo-600 transition-colors"
+                  className="flex-1 py-0.5 text-[7px] font-bold bg-slate-100 text-slate-600 rounded-md hover:bg-indigo-50 hover:text-indigo-600 transition-colors"
                 >
                    {val}°
                 </button>
@@ -120,24 +120,16 @@ export const RotationLab: React.FC<RotationLabProps> = ({ params, onUpdateParams
            </div>
         </div>
 
-        {/* HUD Info */}
-        <div className="absolute top-6 right-6 z-10">
-           <div className="bg-black/80 backdrop-blur-md p-3 rounded-xl border border-white/10 max-w-[220px] shadow-2xl">
-              <div className="flex items-center gap-2 mb-1.5">
-                 <Info className="w-3.5 h-3.5 text-indigo-400" />
-                 <p className="text-[9px] font-black text-white uppercase tracking-widest leading-none">Apa itu Rotasi?</p>
+        {/* HUD Info - Moved to left and shrunk */}
+        <div className="absolute bottom-4 left-4 z-30">
+           <div className="bg-black/80 backdrop-blur-md p-2 rounded-xl border border-white/10 max-w-[120px] shadow-2xl">
+              <div className="flex items-center gap-1 mb-0.5">
+                 <Info className="w-2.5 h-2.5 text-indigo-400" />
+                 <p className="text-[7px] font-black text-white uppercase tracking-widest leading-none">Info</p>
               </div>
-              <p className="text-[10px] text-white/70 leading-tight italic mb-2">
+              <p className="text-[8px] text-white/70 leading-tight italic line-clamp-2">
                  {scenes.find(s => s.id === activeScene)?.desc}
               </p>
-              <div className="pt-2 border-t border-white/5">
-                 <span className="text-indigo-400 font-bold text-[9px] block">
-                    Rotasi {angle}° (0,0).
-                 </span>
-                 <p className="text-[7px] text-white/30 uppercase mt-1">
-                   (x,y) → (x cosθ - y sinθ, x sinθ + y cosθ)
-                 </p>
-              </div>
            </div>
         </div>
       </div>
