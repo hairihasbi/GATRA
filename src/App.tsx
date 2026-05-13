@@ -25,7 +25,8 @@ import {
   Layers,
   User,
   GraduationCap,
-  Award
+  Award,
+  Navigation
 } from 'lucide-react';
 import { MathPlotter } from './components/MathPlotter.tsx';
 import { GPSLab } from './components/GPSLab.tsx';
@@ -204,26 +205,26 @@ export default function App() {
                    <h2 className="text-4xl sm:text-6xl font-black text-white uppercase tracking-tighter drop-shadow-2xl">Peta Hutan Aljabar</h2>
                    <div className="h-1 w-24 bg-orange-500 mx-auto mt-4 rounded-full shadow-lg shadow-orange-500/50" />
                    
-                    <div className="flex flex-wrap justify-center gap-3 sm:gap-4 mt-6">
+                    <div className="flex flex-wrap justify-center gap-4 sm:gap-6 mt-10 transition-all">
                       <button 
                         onClick={() => setShowStory(true)}
-                        className="flex items-center gap-2 px-4 py-2 bg-white/20 backdrop-blur-md border border-white/30 rounded-full text-[10px] font-black uppercase text-white hover:bg-white/30 transition-all border-b-2 border-white/10 shadow-lg"
+                        className="flex items-center gap-3 px-6 py-3 bg-emerald-900 border-2 border-emerald-400 rounded-full text-[12px] font-black uppercase text-white hover:bg-black transition-all shadow-lg"
                       >
-                        <BookOpen className="w-4 h-4 text-orange-400" />
+                        <BookOpen className="w-5 h-5 text-orange-400" />
                         Legenda GATRA
                       </button>
                       <button 
                         onClick={() => setShowObjectives(true)}
-                        className="flex items-center gap-2 px-4 py-2 bg-white/20 backdrop-blur-md border border-white/30 rounded-full text-[10px] font-black uppercase text-white hover:bg-white/30 transition-all border-b-2 border-white/10 shadow-lg"
+                        className="flex items-center gap-3 px-6 py-3 bg-emerald-900 border-2 border-emerald-400 rounded-full text-[12px] font-black uppercase text-white hover:bg-black transition-all shadow-lg"
                       >
-                        <GraduationCap className="w-4 h-4 text-blue-400" />
+                        <GraduationCap className="w-5 h-5 text-blue-400" />
                         Tujuan Pembelajaran
                       </button>
                       <button 
                         onClick={() => setShowProfile(true)}
-                        className="flex items-center gap-2 px-4 py-2 bg-white/20 backdrop-blur-md border border-white/30 rounded-full text-[10px] font-black uppercase text-white hover:bg-white/30 transition-all border-b-2 border-white/10 shadow-lg"
+                        className="flex items-center gap-3 px-6 py-3 bg-emerald-900 border-2 border-emerald-400 rounded-full text-[12px] font-black uppercase text-white hover:bg-black transition-all shadow-lg"
                       >
-                        <User className="w-4 h-4 text-emerald-400" />
+                        <User className="w-5 h-5 text-emerald-400" />
                         Profil Pengajar
                       </button>
                       <button 
@@ -231,9 +232,9 @@ export default function App() {
                           setQuizInitialMode('duel');
                           setShowQuiz(true);
                         }}
-                        className="flex items-center gap-2 px-4 py-2 bg-orange-500 rounded-full text-[10px] font-black uppercase text-white hover:bg-orange-600 transition-all shadow-lg shadow-orange-900/50 border-b-4 border-orange-700 active:border-b-0 active:translate-y-1"
+                        className="flex items-center gap-3 px-6 py-3 bg-orange-600 rounded-full text-[12px] font-black uppercase text-white hover:bg-orange-700 transition-all shadow-lg border-b-4 border-orange-800 active:border-b-0 active:translate-y-1 hover:scale-105"
                       >
-                        <Swords className="w-4 h-4" />
+                        <Swords className="w-5 h-5" />
                         Duel Penjelajah
                       </button>
                    </div>
@@ -296,14 +297,14 @@ export default function App() {
                 <div className="mt-16 flex justify-center">
                    <button 
                     onClick={() => setGameState('lab')}
-                    className="group bg-emerald-800 backdrop-blur-md text-white p-5 sm:p-7 rounded-[40px] flex items-center gap-6 shadow-2xl hover:bg-emerald-700 transition-all border-2 border-emerald-400/50 w-full sm:w-auto mx-4"
+                    className="group bg-emerald-950 text-white p-5 sm:p-7 rounded-[32px] flex items-center gap-6 shadow-2xl hover:bg-black transition-all border-2 border-emerald-500 w-full sm:w-auto mx-4"
                    >
-                     <div className="w-12 h-12 sm:w-16 sm:h-16 bg-emerald-800 rounded-3xl flex items-center justify-center group-hover:rotate-12 transition-transform shadow-lg border border-emerald-400/20">
+                     <div className="w-14 h-14 sm:w-16 sm:h-16 bg-emerald-800 rounded-2xl flex items-center justify-center group-hover:rotate-12 transition-transform shadow-lg border border-emerald-400/40">
                        <Tent className="w-8 h-8 sm:w-10 sm:h-10 text-orange-400" />
                      </div>
                      <div className="text-left">
                        <p className="text-[10px] sm:text-[12px] font-black uppercase tracking-[0.2em] text-emerald-400 mb-1">Mulai Eksplorasi Bebas</p>
-                       <p className="text-lg sm:text-2xl font-black tracking-tight">Masuk ke Tenda Riset Lab</p>
+                       <p className="text-lg sm:text-2xl font-black tracking-tight leading-none uppercase">Buka Tenda Riset Lab</p>
                      </div>
                    </button>
                 </div>
@@ -496,33 +497,33 @@ export default function App() {
                   onStartLab={() => setGameState('level')}
                 />
 
-                <div className="pt-12 flex flex-col sm:flex-row gap-4 border-t border-slate-200 mt-12">
+                <div className="pt-12 flex flex-col md:flex-row gap-6 border-t-2 border-slate-200 mt-16">
                    <button 
                       onClick={() => {
                         setQuizInitialMode('solo');
                         setShowQuiz(true);
                       }}
-                      className="flex-1 p-6 bg-orange-500 hover:bg-orange-600 text-white rounded-[32px] flex items-center justify-center gap-4 shadow-xl shadow-orange-900/10 active:scale-[0.98] transition-all group border-b-4 border-orange-700"
+                      className="flex-1 p-7 bg-orange-600 hover:bg-orange-700 text-white rounded-[32px] flex items-center justify-center gap-6 shadow-xl active:scale-[0.98] transition-all group border-b-8 border-orange-800"
                    >
-                      <div className="w-12 h-12 bg-white/20 rounded-2xl flex items-center justify-center group-hover:rotate-12 transition-transform">
-                         <Target className="w-8 h-8" />
+                      <div className="w-16 h-16 bg-white/20 rounded-2xl flex items-center justify-center group-hover:rotate-12 transition-transform shadow-lg border-2 border-white/30">
+                         <Target className="w-10 h-10" />
                       </div>
                       <div className="text-left">
-                         <p className="text-[10px] font-black uppercase tracking-widest opacity-80">Siap Uji Nyali?</p>
-                         <p className="text-xl font-bold">Mulai Ujian</p>
+                         <p className="text-[12px] font-black uppercase tracking-[0.2em] text-orange-200 mb-1 leading-none">Uji Kompetensi</p>
+                         <p className="text-2xl font-black uppercase tracking-tight">Mulai Ujian</p>
                       </div>
                    </button>
-
+ 
                    <button 
                       onClick={() => setGameState('level')}
-                      className="flex-1 p-6 bg-emerald-950 hover:bg-black text-white rounded-[32px] flex items-center justify-center gap-4 shadow-xl shadow-emerald-900/10 active:scale-[0.98] transition-all group border-b-4 border-emerald-800"
+                      className="flex-1 p-7 bg-emerald-700 hover:bg-emerald-800 text-white rounded-[32px] flex items-center justify-center gap-6 shadow-xl active:scale-[0.98] transition-all group border-b-8 border-emerald-900"
                    >
-                      <div className="w-12 h-12 bg-white/10 rounded-2xl flex items-center justify-center group-hover:rotate-12 transition-transform">
-                         <FlaskConical className="w-8 h-8 text-emerald-400" />
+                      <div className="w-16 h-16 bg-white/20 rounded-2xl flex items-center justify-center group-hover:rotate-12 transition-transform shadow-lg border-2 border-white/30">
+                         <FlaskConical className="w-10 h-10" />
                       </div>
                       <div className="text-left">
-                         <p className="text-[10px] font-black uppercase tracking-widest opacity-40">Eksperimen?</p>
-                         <p className="text-xl font-bold">Buka Lab</p>
+                         <p className="text-[12px] font-black uppercase tracking-[0.2em] text-emerald-200 mb-1 leading-none">Eksplorasi Mandiri</p>
+                         <p className="text-2xl font-black uppercase tracking-tight">Buka Lab</p>
                       </div>
                    </button>
                 </div>
@@ -536,11 +537,67 @@ export default function App() {
               initial={{ opacity: 0, x: 20 }}
               animate={{ opacity: 1, x: 0 }}
               exit={{ opacity: 0, x: -20 }}
-              className="absolute inset-0 flex flex-col lg:flex-row bg-white overflow-hidden"
+              className="absolute inset-0 flex flex-col xl:flex-row bg-white overflow-y-auto xl:overflow-hidden"
             >
+              {/* Mobile/Toggle Header for Lab on IFPs */}
+              <div className="xl:hidden h-20 bg-emerald-950 text-white flex items-center px-8 shrink-0 z-[60] sticky top-0 shadow-2xl border-b-4 border-emerald-800">
+                 <div className="flex items-center gap-5">
+                    <div className="w-12 h-12 bg-emerald-800 rounded-2xl flex items-center justify-center border border-emerald-600 shadow-inner">
+                       <FlaskConical className="w-8 h-8 text-orange-400" />
+                    </div>
+                    <div>
+                      <p className="text-[10px] font-black uppercase text-emerald-500 tracking-[0.4em] leading-none mb-1">Laboratorium GATRA</p>
+                      <p className="text-xl font-black uppercase tracking-tight">{MODULES.find(m => m.id === activeModule)?.subtitle}</p>
+                    </div>
+                 </div>
+                 <button onClick={() => setGameState('map')} className="ml-auto w-14 h-14 bg-orange-600 rounded-2xl flex items-center justify-center shadow-xl active:scale-90 border-4 border-orange-400 transition-all shadow-orange-950/20"><Navigation className="w-8 h-8 shrink-0" /></button>
+              </div>
+
               {/* Plotter View */}
-              <div className="flex-1 relative flex flex-col overflow-hidden min-h-[40%]">
-                <div className="flex-1 relative bg-slate-50">
+              <div className="flex-1 relative flex flex-col overflow-hidden min-h-[500px] xl:h-full">
+                {/* Horizontal Tool Bar for Modes - Prevents Overlap on IFPs */}
+                <div className="bg-emerald-950 border-b-2 border-emerald-800 p-2 sm:p-4 flex flex-wrap justify-center gap-3 z-50 shadow-lg shrink-0">
+                    {/* Common Modes for Translasi */}
+                    {activeModule === 'translasi' && (
+                      <div className="flex gap-2 p-1 bg-emerald-900/50 rounded-xl border border-emerald-700/50">
+                        {['graph', 'geometry', 'gps'].map((mode) => (
+                           <button 
+                             key={mode}
+                             onClick={() => setLabMode(mode as LabMode)}
+                             className={cn(
+                               "px-5 sm:px-8 py-2.5 sm:py-3 rounded-lg sm:rounded-xl text-[11px] sm:text-[12px] font-black uppercase tracking-widest transition-all",
+                               labMode === mode ? "bg-orange-600 text-white shadow-lg scale-105" : "text-emerald-100/40 hover:text-white"
+                             )}
+                           >
+                             {mode === 'graph' ? 'Mode Grafik' : mode === 'geometry' ? 'Bangun Datar' : 'Navigasi GPS'}
+                           </button>
+                        ))}
+                      </div>
+                    )}
+
+                    {/* Specialized Simulation Modes */}
+                    {(activeModule === 'refleksi' || activeModule === 'dilatasi' || activeModule === 'rotasi' || activeModule === 'kombinasi') && (
+                      <div className="flex gap-2 p-1 bg-emerald-900/50 rounded-xl border border-emerald-700/50">
+                        {['graph', 'simulasi'].map((mode) => (
+                          <button 
+                            key={mode}
+                            onClick={() => setLabMode(mode as LabMode)}
+                            className={cn(
+                              "px-5 sm:px-8 py-2.5 sm:py-3 rounded-lg sm:rounded-xl text-[11px] sm:text-[12px] font-black uppercase tracking-widest transition-all flex items-center gap-2",
+                              labMode === mode 
+                                ? "bg-orange-600 text-white shadow-lg scale-105" 
+                                : "text-emerald-100/40 hover:text-white"
+                            )}
+                          >
+                            {mode === 'simulasi' && <Sparkles className="w-4 h-4 text-orange-400" />}
+                            {mode === 'graph' ? 'Mode Grafik' : 'Simulasi Dunia'}
+                          </button>
+                        ))}
+                      </div>
+                    )}
+                </div>
+
+                <div className="flex-1 relative bg-white border-r-2 border-slate-100">
                   {activeModule === 'translasi' && labMode === 'gps' ? (
                     <GPSLab 
                       params={params} 
@@ -582,64 +639,22 @@ export default function App() {
                       scale={plotScale}
                     />
                   )}
-                  
-                  {/* Mode Toggles for Translasi */}
 
-                  {/* Mode Toggles for all Modules */}
-                  <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-wrap justify-center gap-3 z-40 w-max max-w-[calc(100%-40px)]">
-                    {/* Common Modes for Translasi */}
-                    {activeModule === 'translasi' && (
-                      <div className="flex gap-2 p-1.5 bg-white/95 backdrop-blur-md shadow-2xl rounded-2xl border border-slate-200">
-                        {['graph', 'geometry', 'gps'].map((mode) => (
-                          <button 
-                            key={mode}
-                            onClick={() => setLabMode(mode as LabMode)}
-                            className={cn(
-                              "px-5 py-2 rounded-xl text-[10px] font-black uppercase tracking-widest transition-all",
-                              labMode === mode ? "bg-emerald-600 text-white shadow-lg ring-2 ring-emerald-500/20" : "text-slate-500 hover:text-slate-900 hover:bg-slate-100"
-                            )}
-                          >
-                            {mode === 'graph' ? 'Grafik' : mode === 'geometry' ? 'Bangun Datar' : 'Navigasi GPS'}
-                          </button>
-                        ))}
-                      </div>
-                    )}
-
-                    {/* Specialized Simulation Modes for Refleksi, Dilatasi, Rotasi, & Kombinasi */}
-                    {(activeModule === 'refleksi' || activeModule === 'dilatasi' || activeModule === 'rotasi' || activeModule === 'kombinasi') && (
-                      <div className="flex gap-2 p-1.5 bg-white/95 backdrop-blur-md shadow-2xl rounded-2xl border border-slate-200">
-                        {['graph', 'simulasi'].map((mode) => (
-                          <button 
-                            key={mode}
-                            onClick={() => setLabMode(mode as LabMode)}
-                            className={cn(
-                              "px-5 py-2 rounded-xl text-[10px] font-black uppercase tracking-widest transition-all flex items-center gap-2",
-                              labMode === mode 
-                                ? (activeModule === 'refleksi' ? "bg-blue-600 ring-blue-500/20" : 
-                                   activeModule === 'rotasi' ? "bg-indigo-600 ring-indigo-500/20" : 
-                                   activeModule === 'kombinasi' ? "bg-amber-600 ring-amber-500/20" :
-                                   "bg-orange-600 ring-orange-500/20") + " text-white shadow-lg ring-2" 
-                                : "text-slate-500 hover:text-slate-900 hover:bg-slate-100"
-                            )}
-                          >
-                            {mode === 'simulasi' && <Sparkles className="w-3.5 h-3.5" />}
-                            {mode === 'graph' ? 'Grafik' : 'Simulasi Dunia Nyata'}
-                          </button>
-                        ))}
-                      </div>
-                    )}
-                  </div>
-
-                  {/* Floating Lab Info/HUD */}
+                  {/* Floating Lab Info/HUD - Moved to top left, smaller */}
                   {gameState === 'lab' && (
-                    <div className="absolute top-28 right-4 flex flex-col gap-2 pointer-events-none z-40">
+                    <div className="absolute top-4 left-4 flex flex-col gap-2 pointer-events-none z-40">
                        <motion.div 
-                         initial={{ opacity: 0, x: 20 }}
+                         initial={{ opacity: 0, x: -20 }}
                          animate={{ opacity: 1, x: 0 }}
-                         className="bg-white/95 backdrop-blur-md border border-slate-200 px-4 py-2 rounded-2xl shadow-xl border-r-4 border-r-emerald-500 text-right"
+                         className="bg-emerald-950/90 backdrop-blur-md text-white border border-emerald-400/30 px-3 py-1.5 rounded-xl shadow-xl flex items-center gap-2"
                        >
-                          <p className="text-[9px] font-black uppercase text-slate-400 tracking-widest leading-none mb-1">Koordinat Kursor</p>
-                          <p className="text-xs font-mono font-bold text-emerald-950 italic">Eksplorasi {baseFunc}</p>
+                          <div className="w-6 h-6 bg-emerald-800 rounded-lg flex items-center justify-center">
+                             <FlaskConical className="w-4 h-4 text-orange-400" />
+                          </div>
+                          <div>
+                            <p className="text-[7px] font-black uppercase text-emerald-400 tracking-[0.2em] leading-none mb-0.5">Status Eksplorasi</p>
+                            <p className="text-[9px] font-bold italic">Lab {MODULES.find(m => m.id === activeModule)?.title}</p>
+                          </div>
                        </motion.div>
                     </div>
                   )}
@@ -663,7 +678,11 @@ export default function App() {
                 </div>
 
               {/* Sidebar Controls */}
-              <div className="w-full lg:w-80 h-auto lg:h-full shrink-0 border-t lg:border-t-0 lg:border-l border-slate-200 overflow-y-auto bg-[#f7f3e9]">
+              <div className="w-full xl:w-96 h-auto xl:h-full shrink-0 border-t xl:border-t-0 xl:border-l border-slate-300 overflow-y-auto bg-[#fdfaf3] z-[50] shadow-2xl">
+                <div className="p-4 bg-emerald-950 text-white xl:hidden flex items-center justify-between">
+                   <span className="text-[12px] font-black uppercase tracking-widest">Panel Kontrol Eksplorasi</span>
+                   <Navigation className="w-4 h-4 text-orange-400 rotate-90" />
+                </div>
                 <Controls 
                    params={params} 
                    setParams={setParams} 
