@@ -92,24 +92,20 @@ export const DilationLab: React.FC<DilationLabProps> = ({ params, onUpdateParams
         </AnimatePresence>
 
         {/* Legend Overlay */}
-        <div className="absolute bottom-6 left-6 right-6 z-10 flex justify-between items-end gap-10">
-           <div className="bg-black/60 backdrop-blur-md p-4 rounded-2xl border border-white/10 max-w-sm">
-              <div className="flex items-center gap-2 mb-2">
-                 <Info className="w-4 h-4 text-orange-400" />
-                 <p className="text-[10px] font-black text-white uppercase tracking-widest leading-none">Apa yang Terjadi?</p>
+        <div className="absolute top-6 right-6 z-10">
+           <div className="bg-black/80 backdrop-blur-md p-3 rounded-xl border border-white/10 max-w-[220px] shadow-2xl">
+              <div className="flex items-center gap-2 mb-1.5">
+                 <Info className="w-3.5 h-3.5 text-orange-400" />
+                 <p className="text-[9px] font-black text-white uppercase tracking-widest leading-none">Wawasan Dilatasi</p>
               </div>
-              <p className="text-xs text-white/70 leading-relaxed italic">
+              <p className="text-[10px] text-white/70 leading-tight italic mb-2">
                  {scenes.find(s => s.id === activeScene)?.desc}
-                 <br />
-                 <span className="text-orange-400 font-bold">
-                    {scaleFactor > 1 ? "Objek diperbesar (k > 1)" : scaleFactor < 1 ? "Objek diperkecil (k < 1)" : "Ukuran tetap (k = 1)"}
-                 </span>
               </p>
-           </div>
-           
-           <div className="flex flex-col gap-2">
-              <div className="px-3 py-1 bg-white/10 rounded-full border border-white/20 text-[8px] font-bold text-white/60 tracking-widest uppercase">
-                 Dilatasi (Perkalian Skala)
+              <div className="pt-2 border-t border-white/5">
+                <span className="text-orange-400 font-bold text-[9px] block">
+                   {scaleFactor > 1 ? "Objek diperbesar (k > 1)" : scaleFactor < 1 ? "Objek diperkecil (k < 1)" : "Ukuran tetap (k = 1)"}
+                </span>
+                <p className="text-[7px] text-white/30 uppercase mt-1">P'(x,y) = (kx, ky)</p>
               </div>
            </div>
         </div>

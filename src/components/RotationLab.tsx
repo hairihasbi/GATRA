@@ -121,24 +121,22 @@ export const RotationLab: React.FC<RotationLabProps> = ({ params, onUpdateParams
         </div>
 
         {/* HUD Info */}
-        <div className="absolute bottom-6 left-6 right-6 z-10 flex justify-between items-end">
-           <div className="bg-black/60 backdrop-blur-md p-4 rounded-2xl border border-white/10 max-w-sm">
-              <div className="flex items-center gap-2 mb-2">
-                 <Info className="w-4 h-4 text-indigo-400" />
-                 <p className="text-[10px] font-black text-white uppercase tracking-widest leading-none">Apa itu Rotasi?</p>
+        <div className="absolute top-6 right-6 z-10">
+           <div className="bg-black/80 backdrop-blur-md p-3 rounded-xl border border-white/10 max-w-[220px] shadow-2xl">
+              <div className="flex items-center gap-2 mb-1.5">
+                 <Info className="w-3.5 h-3.5 text-indigo-400" />
+                 <p className="text-[9px] font-black text-white uppercase tracking-widest leading-none">Apa itu Rotasi?</p>
               </div>
-              <p className="text-xs text-white/70 leading-relaxed italic">
+              <p className="text-[10px] text-white/70 leading-tight italic mb-2">
                  {scenes.find(s => s.id === activeScene)?.desc}
-                 <br />
-                 <span className="text-indigo-400 font-bold block mt-1">
-                    Rotasi {angle}° berlawanan arah jarum jam terhadap titik pusat (0,0).
-                 </span>
               </p>
-           </div>
-           
-           <div className="flex flex-col gap-2 scale-75 origin-bottom-right">
-              <div className="px-3 py-1 bg-white/10 rounded-full border border-white/20 text-[8px] font-bold text-white/60 tracking-widest uppercase">
-                 Matematika: (x, y) → (x cosθ - y sinθ, x sinθ + y cosθ)
+              <div className="pt-2 border-t border-white/5">
+                 <span className="text-indigo-400 font-bold text-[9px] block">
+                    Rotasi {angle}° (0,0).
+                 </span>
+                 <p className="text-[7px] text-white/30 uppercase mt-1">
+                   (x,y) → (x cosθ - y sinθ, x sinθ + y cosθ)
+                 </p>
               </div>
            </div>
         </div>

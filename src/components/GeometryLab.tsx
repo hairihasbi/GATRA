@@ -185,68 +185,35 @@ export const GeometryLab: React.FC<GeometryLabProps> = ({ params, scale = 40, on
                 );
               })}
 
-              {/* Title & Shape Selector */}
-              <div className="absolute top-4 left-4 z-20 flex flex-col gap-3">
-                <div className="bg-white/90 backdrop-blur border border-slate-200 p-4 rounded-2xl shadow-xl">
-                  <div className="flex items-center gap-2 mb-3">
-                    <Layers className="w-4 h-4 text-orange-500" />
-                    <span className="text-[10px] font-black uppercase tracking-widest text-slate-600">Lab Bangun Datar</span>
+              {/* Title & Shape Selector - Moved to right, smaller */}
+              <div className="absolute top-4 right-4 z-20 flex flex-col gap-2">
+                <div className="bg-white/95 backdrop-blur border border-slate-200 p-3 rounded-xl shadow-xl w-48">
+                  <div className="flex items-center gap-2 mb-2">
+                    <Layers className="w-3.5 h-3.5 text-orange-500" />
+                    <span className="text-[8px] font-black uppercase tracking-widest text-slate-500">Lab Bangun Datar</span>
                   </div>
-                  <div className="flex gap-2">
+                  <div className="flex gap-1.5 overflow-x-auto no-scrollbar pb-1">
                     {shapes.map((s) => (
                       <button
                         key={s.id}
                         onClick={() => setActiveShape(s.id)}
                         className={cn(
-                          "p-2 rounded-lg transition-all border-2",
-                          activeShape === s.id ? "bg-orange-500 border-orange-600 text-white shadow-md" : "bg-slate-50 border-slate-200 text-slate-400 hover:border-orange-300"
+                          "p-1.5 rounded-lg transition-all border-2 shrink-0",
+                          activeShape === s.id ? "bg-orange-500 border-orange-600 text-white" : "bg-slate-50 border-slate-200 text-slate-400"
                         )}
-                        title={s.label}
                       >
-                        {s.icon}
+                        {React.cloneElement(s.icon as React.ReactElement, { className: 'w-3.5 h-3.5' })}
                       </button>
                     ))}
                   </div>
-                </div>
-
-                <div className="bg-white/90 backdrop-blur border border-slate-200 p-3 rounded-xl shadow-lg">
-                  <p className="text-[8px] font-bold text-slate-500 uppercase mb-2">Titik Awal (x₁, y₁)</p>
-                  <div className="flex gap-2">
-                    <input 
-                      type="number" 
-                      value={inputX1}
-                      onChange={(e) => handleInputChange('x1', e.target.value)}
-                      className="w-12 bg-slate-50 border border-slate-200 rounded text-xs font-bold text-slate-600 text-center focus:outline-none focus:border-orange-500"
-                    />
-                    <input 
-                      type="number" 
-                      value={inputY1}
-                      onChange={(e) => handleInputChange('y1', e.target.value)}
-                      className="w-12 bg-slate-50 border border-slate-200 rounded text-xs font-bold text-slate-600 text-center focus:outline-none focus:border-orange-500"
-                    />
-                  </div>
-                </div>
-
-                <div className="bg-orange-500/10 backdrop-blur border border-orange-500/20 p-3 rounded-xl">
-                  <p className="text-[8px] font-bold text-orange-600 uppercase mb-2">Notasi Translasi</p>
-                  <div className="flex items-center gap-3">
-                    <span className="text-xl font-black text-slate-700">P'</span>
-                    <span className="text-sm font-bold text-slate-500">=</span>
-                    <div className="flex flex-col items-center border-l-2 border-r-2 border-slate-800 px-2 gap-1">
-                      <input 
-                        type="number" 
-                        value={inputC}
-                        onChange={(e) => handleInputChange('c', e.target.value)}
-                        className="w-14 bg-white/50 border border-blue-500/30 rounded text-xs font-black text-blue-600 text-center focus:outline-none focus:border-blue-500 transition-colors"
-                        step="0.5"
-                      />
-                      <input 
-                        type="number" 
-                        value={inputD}
-                        onChange={(e) => handleInputChange('d', e.target.value)}
-                        className="w-14 bg-white/50 border border-emerald-500/30 rounded text-xs font-black text-emerald-600 text-center focus:outline-none focus:border-emerald-500 transition-colors"
-                        step="0.5"
-                      />
+                  <div className="mt-2 pt-2 border-t border-slate-100">
+                    <p className="text-[7px] font-bold text-slate-400 uppercase mb-1">Matematika</p>
+                    <div className="flex items-center justify-between">
+                       <span className="text-[10px] font-black text-slate-800">P' = P + T</span>
+                       <div className="flex flex-col items-center border-x border-slate-800 px-1.5 text-[9px] font-black text-blue-600">
+                          <span>{params.c}</span>
+                          <span>{params.d}</span>
+                       </div>
                     </div>
                   </div>
                 </div>

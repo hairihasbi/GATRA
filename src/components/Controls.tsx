@@ -77,44 +77,44 @@ export const Controls: React.FC<ControlsProps> = ({
   }, [params, activeModule]);
 
   return (
-    <div className="flex flex-col gap-0 bg-[#f7f3e9] border-l border-[#e8dfc4] h-full overflow-hidden w-full lg:w-80 shadow-inner">
+    <div className="flex flex-col gap-0 bg-[#fdfaf3] border-l border-[#e8dfc4] h-full overflow-hidden w-full lg:w-72 shadow-xl">
       {/* Tab Header */}
       <div className="flex border-b border-[#e8dfc4] bg-emerald-950 p-1">
          <button 
            onClick={() => setActiveTab('control')}
-           className={cn("flex-1 py-4 flex flex-col items-center gap-1 rounded-xl transition-all", activeTab === 'control' ? "bg-white/20 text-orange-400" : "text-emerald-100/60 hover:text-emerald-100")}
+           className={cn("flex-1 py-2.5 flex flex-col items-center gap-1 rounded-xl transition-all", activeTab === 'control' ? "bg-white/20 text-orange-400" : "text-emerald-100/60 hover:text-emerald-100")}
          >
-            <SlidersHorizontal className="w-5 h-5" />
-            <span className="text-[10px] font-black uppercase">Kontrol</span>
+            <SlidersHorizontal className="w-4 h-4" />
+            <span className="text-[9px] font-black uppercase tracking-wider">Kontrol</span>
          </button>
          <button 
            onClick={() => setActiveTab('data')}
-           className={cn("flex-1 py-4 flex flex-col items-center gap-1 rounded-xl transition-all", activeTab === 'data' ? "bg-white/20 text-orange-400" : "text-emerald-100/60 hover:text-emerald-100")}
+           className={cn("flex-1 py-2.5 flex flex-col items-center gap-1 rounded-xl transition-all", activeTab === 'data' ? "bg-white/20 text-orange-400" : "text-emerald-100/60 hover:text-emerald-100")}
          >
-            <TableIcon className="w-5 h-5" />
-            <span className="text-[10px] font-black uppercase">Data</span>
+            <TableIcon className="w-4 h-4" />
+            <span className="text-[9px] font-black uppercase tracking-wider">Data</span>
          </button>
          <button 
            onClick={() => setActiveTab('history')}
-           className={cn("flex-1 py-4 flex flex-col items-center gap-1 rounded-xl transition-all", activeTab === 'history' ? "bg-white/20 text-orange-400" : "text-emerald-100/60 hover:text-emerald-100")}
+           className={cn("flex-1 py-2.5 flex flex-col items-center gap-1 rounded-xl transition-all", activeTab === 'history' ? "bg-white/20 text-orange-400" : "text-emerald-100/60 hover:text-emerald-100")}
          >
-            <History className="w-5 h-5" />
-            <span className="text-[10px] font-black uppercase">Riwayat</span>
+            <History className="w-4 h-4" />
+            <span className="text-[9px] font-black uppercase tracking-wider">Riwayat</span>
          </button>
       </div>
 
-      <div className="flex-1 overflow-y-auto p-6 space-y-6">
+      <div className="flex-1 overflow-y-auto p-4 space-y-4">
         {activeTab === 'control' && (
           <>
             {(labMode === 'gps' || labMode === 'geometry' || labMode === 'simulasi') && (
               <div className={cn(
-                "p-4 rounded-2xl mb-4 flex items-center gap-3 border",
-                labMode === 'gps' ? "bg-emerald-100 border-emerald-200" : 
-                labMode === 'geometry' ? "bg-indigo-100 border-indigo-200" :
-                "bg-orange-100 border-orange-200"
+                "p-4 rounded-2xl mb-4 flex items-center gap-3 border shadow-md",
+                labMode === 'gps' ? "bg-emerald-50 border-emerald-200" : 
+                labMode === 'geometry' ? "bg-indigo-50 border-indigo-200" :
+                "bg-orange-50 border-orange-200"
               )}>
                 <div className={cn(
-                  "w-10 h-10 rounded-xl flex items-center justify-center text-white shrink-0 shadow-lg",
+                  "w-10 h-10 rounded-xl flex items-center justify-center text-white shrink-0 shadow-lg border border-white/30",
                   labMode === 'gps' ? "bg-emerald-600" : 
                   labMode === 'geometry' ? "bg-indigo-600" :
                   "bg-orange-600"
@@ -125,16 +125,16 @@ export const Controls: React.FC<ControlsProps> = ({
                 </div>
                 <div>
                   <p className={cn(
-                    "text-[10px] font-black uppercase tracking-widest",
-                    labMode === 'gps' ? "text-emerald-800" : 
-                    labMode === 'geometry' ? "text-indigo-800" :
-                    "text-orange-800"
-                  )}>Mode {labMode === 'gps' ? 'Navigasi' : labMode === 'geometry' ? 'Bangun Datar' : 'Simulasi Nyata'}</p>
-                  <p className={cn(
-                    "text-[11px] font-medium",
+                    "text-[10px] font-black uppercase tracking-[0.2em] mb-0.5",
                     labMode === 'gps' ? "text-emerald-700" : 
                     labMode === 'geometry' ? "text-indigo-700" :
                     "text-orange-700"
+                  )}>Mode {labMode === 'gps' ? 'Navigasi' : labMode === 'geometry' ? 'Bangun Datar' : 'Simulasi Nyata'}</p>
+                  <p className={cn(
+                    "text-[11px] font-bold leading-tight",
+                    labMode === 'gps' ? "text-emerald-950" : 
+                    labMode === 'geometry' ? "text-indigo-950" :
+                    "text-orange-950"
                   )}>
                     {labMode === 'simulasi' 
                       ? (activeModule === 'refleksi' ? 'Aktifkan refleksi untuk melihat bayangan!' : 'Pilih skenario dan geser slider untuk mengubah ukuran objek!')
@@ -144,7 +144,7 @@ export const Controls: React.FC<ControlsProps> = ({
               </div>
             )}
 
-            <div className="space-y-6 bg-white p-6 rounded-[32px] border border-emerald-100 shadow-md">
+            <div className="space-y-6 bg-white p-6 rounded-[24px] border border-emerald-100 shadow-md">
               {isVisible('x1') && (labMode === 'gps' || labMode === 'geometry' || activeModule === 'dilatasi') && (
                 <ControlGroup 
                   label={activeModule === 'dilatasi' ? "Pusat Dilatasi X (a)" : "Titik Awal X (x₁)"} 
@@ -187,28 +187,28 @@ export const Controls: React.FC<ControlsProps> = ({
               <button
                 disabled={readOnly}
                 onClick={() => update('reflectX', !params.reflectX)}
-                className={cn("flex flex-col items-center gap-2 p-5 rounded-3xl border-2 transition-all active:scale-95 shadow-sm", params.reflectX ? "bg-orange-600 border-orange-700 text-white shadow-orange-900/20" : "bg-white border-emerald-200 text-emerald-900 hover:border-emerald-400", readOnly && "opacity-50 cursor-not-allowed")}
+                className={cn("flex flex-col items-center gap-2 p-5 rounded-2xl border-2 transition-all active:scale-95 shadow-md", params.reflectX ? "bg-orange-600 border-orange-700 text-white shadow-orange-900/20" : "bg-white border-emerald-100 text-emerald-950 hover:border-emerald-400", readOnly && "opacity-50 cursor-not-allowed")}
               >
                 <FlipHorizontal className="w-6 h-6" />
-                <span className="text-[10px] uppercase font-black">Cermin X</span>
+                <span className="text-[10px] uppercase font-black tracking-widest">Cermin X</span>
               </button>
               <button
                 disabled={readOnly}
                 onClick={() => update('reflectY', !params.reflectY)}
-                className={cn("flex flex-col items-center gap-2 p-5 rounded-3xl border-2 transition-all active:scale-95 shadow-sm", params.reflectY ? "bg-orange-600 border-orange-700 text-white shadow-orange-900/20" : "bg-white border-emerald-200 text-emerald-900 hover:border-emerald-400", readOnly && "opacity-50 cursor-not-allowed")}
+                className={cn("flex flex-col items-center gap-2 p-5 rounded-2xl border-2 transition-all active:scale-95 shadow-md", params.reflectY ? "bg-orange-600 border-orange-700 text-white shadow-orange-900/20" : "bg-white border-emerald-100 text-emerald-950 hover:border-emerald-400", readOnly && "opacity-50 cursor-not-allowed")}
               >
                 <FlipVertical className="w-6 h-6" />
-                <span className="text-[10px] uppercase font-black">Cermin Y</span>
+                <span className="text-[10px] uppercase font-black tracking-widest">Cermin Y</span>
               </button>
             </div>
 
-            <div className="bg-emerald-900 p-4 rounded-[28px] shadow-lg border border-emerald-800">
+            <div className="bg-emerald-950 p-4 rounded-3xl shadow-xl border-2 border-emerald-800">
                <div className="flex items-center justify-between mb-3">
-                  <p className="text-[8px] text-emerald-400 uppercase font-black tracking-widest">Persamaan Terkini</p>
-                  <Zap className="w-3 h-3 text-orange-400" />
+                  <p className="text-[9px] text-emerald-500 uppercase font-black tracking-[0.2em]">Persamaan Terkini</p>
+                  <Zap className="w-4 h-4 text-orange-400" />
                </div>
-               <div className="bg-black/30 p-3 rounded-xl border border-white/5">
-                  <code className="text-[11px] font-mono text-orange-200 block text-center">
+               <div className="bg-black/30 p-4 rounded-xl border border-white/5">
+                  <code className="text-[12px] font-mono text-orange-200 block text-center leading-sm">
                     g(x) = {params.reflectX ? '-' : ''}{params.a !== 1 ? params.a.toFixed(1) : ''}f({params.reflectY ? '-' : ''}{params.b !== 1 ? params.b.toFixed(1) : ''}(x {params.c >= 0 ? '-' : '+'} {Math.abs(params.c).toFixed(1)})) {params.d >= 0 ? '+' : '-'} {Math.abs(params.d).toFixed(1)}
                   </code>
                </div>
@@ -329,10 +329,10 @@ export const Controls: React.FC<ControlsProps> = ({
       <div className="p-4 bg-white border-t border-slate-200">
          <button
           onClick={() => setParams({ a: 1, b: 1, c: 0, d: 0, x1: 0, y1: 0, reflectX: false, reflectY: false, rotation: 0 })}
-          className="w-full flex items-center justify-center gap-3 p-4 rounded-2xl bg-emerald-950 text-emerald-100 hover:bg-black transition-all border-b-4 border-emerald-900 active:border-b-0 active:translate-y-1 shadow-lg group"
+          className="w-full flex items-center justify-center gap-2 p-3 rounded-xl bg-emerald-950 text-emerald-100 hover:bg-black transition-all border-b-2 border-emerald-900 active:border-b-0 active:translate-y-1 shadow-md group"
         >
-          <RotateCcw className="w-5 h-5 group-hover:rotate-180 transition-transform duration-500" />
-          <span className="text-[10px] font-black uppercase tracking-widest">Reset Eksperimen</span>
+          <RotateCcw className="w-4 h-4 group-hover:rotate-180 transition-transform duration-500" />
+          <span className="text-[9px] font-black uppercase tracking-widest">Reset Eksperimen</span>
         </button>
       </div>
     </div>
@@ -351,25 +351,27 @@ interface ControlGroupProps {
 }
 
 const ControlGroup: React.FC<ControlGroupProps> = ({ label, icon, value, min, max, step, onChange, readOnly = false }) => (
-  <div className="flex flex-col gap-3 py-1">
+  <div className="flex flex-col gap-2 py-1">
     <div className="flex items-center justify-between">
-      <div className="flex items-center gap-2 text-slate-600">
-        <div className="p-1.5 bg-slate-100 rounded-lg">
-           {icon}
+      <div className="flex items-center gap-2 text-slate-700">
+        <div className="p-1.5 bg-slate-100 rounded-lg border border-slate-200 shadow-sm">
+           {React.cloneElement(icon as React.ReactElement, { className: 'w-4 h-4' })}
         </div>
-        <span className="text-xs uppercase font-black tracking-wider text-slate-700">{label}</span>
+        <span className="text-[11px] uppercase font-black tracking-widest text-slate-900">{label}</span>
       </div>
-      <span className="text-sm font-mono font-black text-blue-700 bg-blue-50 px-2 py-0.5 rounded-lg border border-blue-100">{value.toFixed(1)}</span>
+      <span className="text-sm font-mono font-black text-orange-600 bg-orange-50 px-2 py-1 rounded-lg border border-orange-100 shadow-inner">{value.toFixed(1)}</span>
     </div>
-    <input
-      type="range"
-      min={min}
-      max={max}
-      step={step}
-      value={value}
-      disabled={readOnly}
-      onChange={(e) => onChange(parseFloat(e.target.value))}
-      className={cn("w-full h-3 bg-gray-200 rounded-full appearance-none cursor-pointer accent-blue-600", readOnly && "opacity-50 cursor-not-allowed")}
-    />
+    <div className="relative group px-1">
+      <input
+        type="range"
+        min={min}
+        max={max}
+        step={step}
+        value={value}
+        disabled={readOnly}
+        onChange={(e) => onChange(parseFloat(e.target.value))}
+        className={cn("w-full h-6 bg-slate-100 rounded-lg appearance-none cursor-pointer accent-orange-600 border border-slate-200/50 hover:border-orange-200 transition-all shadow-inner", readOnly && "opacity-50 cursor-not-allowed")}
+      />
+    </div>
   </div>
 );

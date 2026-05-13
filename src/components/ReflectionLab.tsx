@@ -116,32 +116,31 @@ export const ReflectionLab: React.FC<ReflectionLabProps> = ({ params, onUpdatePa
       </AnimatePresence>
 
       {/* Legend / Info Panel */}
-      <div className="absolute bottom-4 left-4 z-20">
-         <div className="bg-slate-900/80 backdrop-blur border border-white/10 p-4 rounded-2xl shadow-xl max-w-xs transition-all hover:border-blue-500/50">
-            <div className="flex items-center gap-2 mb-2">
-               <HelpCircle className="w-4 h-4 text-blue-400" />
-               <p className="text-[10px] font-black uppercase text-blue-100 tracking-widest">Wawasan Refleksi</p>
+      <div className="absolute bottom-4 right-4 z-20">
+         <div className="bg-slate-900/90 backdrop-blur-md border border-white/20 p-3 rounded-xl shadow-2xl max-w-[240px] transition-all hover:border-blue-400">
+            <div className="flex items-center gap-2 mb-1.5">
+               <HelpCircle className="w-3.5 h-3.5 text-blue-400" />
+               <p className="text-[9px] font-black uppercase text-blue-100 tracking-widest">Wawasan Refleksi</p>
             </div>
-            <p className="text-[11px] text-slate-300 leading-relaxed italic">
-               {activeScene === 'lake' && "Bayangan pada permukaan air tenang adalah contoh Refleksi Sumbu X (vertikal). Objek di atas air dipetakan tegak lurus ke bawah."}
-               {activeScene === 'photography' && "Saat berfoto di depan cermin, terjadi Refleksi Sumbu Y (horizontal). Sisi kananmu menjadi sisi kiri di bayangan." }
-               {activeScene === 'butterfly' && "Sayap kupu-kupu menunjukkan simetri lipat yang merupakan penerapan refleksi. Satu sisi adalah cerminan sisi lainnya."}
-               {activeScene === 'monolith' && "Dalam ruang 3D, refleksi membalikkan koordinat terhadap bidang tertentu. Perhatikan bagaimana teks atau orientasi objek berubah."}
+            <p className="text-[10px] text-slate-300 leading-tight italic">
+               {activeScene === 'lake' && "Bayangan pada permukaan air tenang adalah contoh Refleksi Sumbu X (vertikal)."}
+               {activeScene === 'photography' && "Saat berfoto di depan cermin, terjadi Refleksi Sumbu Y (horizontal)." }
+               {activeScene === 'butterfly' && "Sayap kupu-kupu menunjukkan simetri lipat (refleksi)."}
+               {activeScene === 'monolith' && "Dalam ruang 3D, refleksi membalikkan koordinat terhadap bidang tertentu."}
             </p>
-            <div className="mt-3 flex items-center justify-between">
+            <div className="mt-2 pt-2 border-t border-white/10 flex items-center justify-between">
               <div className="flex flex-col">
-                <span className="text-[8px] font-black text-slate-500 uppercase tracking-tighter">Matematika Konten</span>
-                <span className="text-[10px] font-mono font-bold text-white">
+                <span className="text-[7px] font-black text-slate-500 uppercase tracking-tighter">Matematika</span>
+                <span className="text-[9px] font-mono font-bold text-white">
                    {activeScene === 'lake' ? "(x, y) → (x, -y)" : "(x, y) → (-x, y)"}
                 </span>
               </div>
               <button 
                 onClick={() => setShowGrid(!showGrid)}
                 className={cn(
-                  "p-2 rounded-lg transition-colors border",
+                  "p-1.5 rounded-lg transition-colors border",
                   showGrid ? "bg-white/10 border-white/20 text-white" : "bg-transparent border-white/10 text-white/40"
                 )}
-                title="Toggle Grid"
               >
                 <Ruler className="w-3 h-3" />
               </button>

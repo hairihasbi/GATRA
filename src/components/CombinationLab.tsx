@@ -153,36 +153,30 @@ export const CombinationLab: React.FC<CombinationLabProps> = ({ params, onUpdate
         </AnimatePresence>
 
         {/* HUD Info */}
-        <div className="absolute bottom-6 left-6 right-6 z-10 flex justify-between items-end gap-4 overflow-hidden">
+        <div className="absolute top-6 right-6 z-10">
            <motion.div 
              key={activeScene}
-             initial={{ opacity: 0, y: 20 }}
-             animate={{ opacity: 1, y: 0 }}
-             className="bg-black/60 backdrop-blur-md p-4 rounded-2xl border border-white/10 max-w-sm"
+             initial={{ opacity: 0, scale: 0.95 }}
+             animate={{ opacity: 1, scale: 1 }}
+             className="bg-black/80 backdrop-blur-md p-3 rounded-xl border border-white/10 max-w-[220px] shadow-2xl"
            >
-              <div className="flex items-center justify-between gap-4 mb-2">
-                 <div className="flex items-center gap-2">
-                    <Info className="w-4 h-4 text-amber-400" />
-                    <p className="text-[10px] font-black text-white uppercase tracking-widest leading-none">{currentScene?.label}</p>
+              <div className="flex items-center justify-between gap-4 mb-1.5">
+                 <div className="flex items-center gap-1.5">
+                    <Info className="w-3.5 h-3.5 text-amber-400" />
+                    <p className="text-[9px] font-black text-white uppercase tracking-widest leading-none">{currentScene?.label}</p>
                  </div>
-                 <div className="px-2 py-0.5 bg-amber-500 rounded-full text-[8px] font-black text-black uppercase">
-                    {currentScene?.combo}
+                 <div className="px-1.5 py-0.5 bg-amber-500 rounded text-[7px] font-black text-black uppercase">
+                    {currentScene?.combo?.split(' ')[0]}
                  </div>
               </div>
-              <p className="text-xs text-white/70 leading-relaxed font-medium">
+              <p className="text-[10px] text-white/70 leading-tight mb-2">
                  {currentScene?.desc}
               </p>
-              <div className="mt-3 pt-3 border-t border-white/10 flex items-center justify-between">
-                 <code className="text-amber-400 text-[10px] font-mono font-bold">{currentScene?.math}</code>
-                 <span className="text-[8px] font-bold text-white/30 tracking-widest uppercase">Formula Dasar</span>
+              <div className="pt-2 border-t border-white/5 flex flex-col gap-1">
+                 <code className="text-amber-400 text-[9px] font-mono font-bold break-all">{currentScene?.math}</code>
+                 <span className="text-[7px] font-bold text-white/30 tracking-widest uppercase">Formula Dasar</span>
               </div>
            </motion.div>
-           
-           <div className="hidden sm:flex flex-col gap-2 shrink-0">
-              <div className="px-3 py-1 bg-white/10 rounded-full border border-white/20 text-[8px] font-bold text-white/50 tracking-widest uppercase text-center">
-                 Aplikasi Nyata
-              </div>
-           </div>
         </div>
       </div>
     </div>

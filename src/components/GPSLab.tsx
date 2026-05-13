@@ -180,94 +180,52 @@ export const GPSLab: React.FC<GPSLabProps> = ({ params, scale = 40, onUpdatePara
               </div>
 
               {/* HUD - Dynamic Info Panel */}
-              <div className="absolute top-4 left-4 z-30 flex flex-col gap-2">
+              <div className="absolute top-4 right-4 z-30 flex flex-col gap-2">
                 <motion.div 
-                  initial={{ x: -50, opacity: 0 }}
-                  animate={{ x: 0, opacity: 1 }}
-                  className="bg-emerald-950/90 backdrop-blur-md border border-emerald-500/30 p-4 rounded-2xl shadow-2xl w-64"
-                >
-                  <div className="flex items-center gap-2 mb-3">
-                    <div className="w-8 h-8 bg-emerald-600 rounded-lg flex items-center justify-center">
-                      <Navigation className="w-4 h-4 text-white" />
-                    </div>
-                    <div>
-                      <h4 className="text-[10px] font-black text-emerald-100 uppercase tracking-tighter">Radar Navigasi GATRA</h4>
-                      <p className="text-[8px] text-emerald-400 uppercase tracking-widest font-bold">Status: {(params.c === 0 && params.d === 0) ? 'Siap Berangkat' : 'Menuju Target'}</p>
-                    </div>
-                  </div>
-                  
-                  <div className="grid grid-cols-2 gap-3 mb-3">
-                    <div className="bg-black/40 p-2 rounded-xl border border-white/5 relative overflow-hidden group">
-                      <div className="absolute top-0 right-0 p-1 opacity-20 group-hover:opacity-100 transition-opacity">
-                        <span className="text-[10px] font-bold text-blue-400">Δx</span>
-                      </div>
-                      <span className="text-[8px] text-slate-400 block uppercase mb-1">Selisih X</span>
-                      <span className="text-sm font-black text-white">{params.c > 0 ? `+${params.c}` : params.c} m</span>
-                      <div className="text-[7px] text-blue-400/60 font-medium whitespace-nowrap mt-1">{params.x1 + params.c} - {params.x1} = {params.c}</div>
-                    </div>
-                    <div className="bg-black/40 p-2 rounded-xl border border-white/5 relative overflow-hidden group">
-                      <div className="absolute top-0 right-0 p-1 opacity-20 group-hover:opacity-100 transition-opacity">
-                        <span className="text-[10px] font-bold text-emerald-400">Δy</span>
-                      </div>
-                      <span className="text-[8px] text-slate-400 block uppercase mb-1">Selisih Y</span>
-                      <span className="text-sm font-black text-white">{params.d > 0 ? `+${params.d}` : params.d} m</span>
-                      <div className="text-[7px] text-emerald-400/60 font-medium whitespace-nowrap mt-1">{params.y1 + params.d} - {params.y1} = {params.d}</div>
-                    </div>
-                  </div>
+                   initial={{ x: 50, opacity: 0 }}
+                   animate={{ x: 0, opacity: 1 }}
+                   className="bg-emerald-950/95 backdrop-blur-md border border-emerald-500/30 p-3 rounded-xl shadow-2xl w-56"
+                 >
+                   <div className="flex items-center gap-2 mb-2">
+                     <div className="w-6 h-6 bg-emerald-600 rounded-lg flex items-center justify-center">
+                       <Navigation className="w-3 h-3 text-white" />
+                     </div>
+                     <div>
+                       <h4 className="text-[9px] font-black text-emerald-100 uppercase tracking-tighter">Radar Navigasi</h4>
+                       <p className="text-[7px] text-emerald-400 uppercase tracking-widest font-bold">{(params.c === 0 && params.d === 0) ? 'Siap' : 'Aktif'}</p>
+                     </div>
+                   </div>
+                   
+                   <div className="grid grid-cols-2 gap-2 mb-2">
+                     <div className="bg-black/40 p-1.5 rounded-lg border border-white/5 relative overflow-hidden group">
+                       <span className="text-[7px] text-slate-400 block uppercase mb-1">Δx</span>
+                       <span className="text-xs font-black text-white">{params.c > 0 ? `+${params.c}` : params.c}</span>
+                     </div>
+                     <div className="bg-black/40 p-1.5 rounded-lg border border-white/5 relative overflow-hidden group">
+                       <span className="text-[7px] text-slate-400 block uppercase mb-1">Δy</span>
+                       <span className="text-xs font-black text-white">{params.d > 0 ? `+${params.d}` : params.d}</span>
+                     </div>
+                   </div>
 
-                  {/* Initial Point Inputs */}
-                  <div className="bg-black/20 p-2 rounded-xl border border-white/5 mb-3">
-                    <span className="text-[8px] text-slate-400 block uppercase mb-1">Titik Awal (x₁, y₁)</span>
-                    <div className="flex items-center gap-2">
-                        <input 
-                            type="number" 
-                            value={inputX1}
-                            onChange={(e) => handleInputChange('x1', e.target.value)}
-                            className="w-full bg-emerald-900/30 border border-emerald-500/20 rounded text-xs font-bold text-white text-center focus:outline-none focus:border-emerald-500"
-                        />
-                        <input 
-                            type="number" 
-                            value={inputY1}
-                            onChange={(e) => handleInputChange('y1', e.target.value)}
-                            className="w-full bg-emerald-900/30 border border-emerald-500/20 rounded text-xs font-bold text-white text-center focus:outline-none focus:border-emerald-500"
-                        />
-                    </div>
-                  </div>
-
-                  <div className="flex items-center justify-between border-t border-emerald-500/20 pt-3">
-                    <div className="flex items-center gap-2">
-                        <span className="text-[14px] font-black text-white">T</span>
-                        <div className="flex flex-col items-center border-l-2 border-r-2 border-white px-2 gap-1">
-                            <input 
-                                type="number" 
-                                value={inputC}
-                                onChange={(e) => handleInputChange('c', e.target.value)}
-                                className="w-12 bg-emerald-900/50 border border-orange-500/30 rounded text-xs font-black text-orange-400 text-center focus:outline-none focus:border-orange-500 transition-colors"
-                                step="0.5"
-                            />
-                            <input 
-                                type="number" 
-                                value={inputD}
-                                onChange={(e) => handleInputChange('d', e.target.value)}
-                                className="w-12 bg-emerald-900/50 border border-emerald-500/30 rounded text-xs font-black text-emerald-400 text-center focus:outline-none focus:border-emerald-500 transition-colors"
-                                step="0.5"
-                            />
-                        </div>
-                    </div>
-                    
-                    <button 
-                        onClick={isSimulating ? resetSimulation : startSimulation}
-                        className={cn(
-                            "px-4 py-2 rounded-xl text-[10px] font-black uppercase transition-all flex items-center gap-2 shadow-lg",
-                            isSimulating 
-                                ? "bg-slate-700 text-white hover:bg-slate-600" 
-                                : "bg-orange-500 text-white hover:bg-orange-600 active:scale-95"
-                        )}
-                    >
-                        {isSimulating ? <RotateCcw className="w-3 h-3" /> : <Play className="w-3 h-3" />}
-                        {isSimulating ? 'Reset' : 'Simulasi'}
-                    </button>
-                  </div>
+                   <div className="flex items-center justify-between border-t border-emerald-500/20 pt-2">
+                     <div className="flex flex-col">
+                        <span className="text-[7px] text-slate-500 font-bold uppercase">Target</span>
+                        <span className="text-[9px] font-black text-orange-400 tracking-tighter">({params.x1 + params.c}, {params.y1 + params.d})</span>
+                     </div>
+                     
+                     <button 
+                         onClick={isSimulating ? resetSimulation : startSimulation}
+                         className={cn(
+                             "px-3 py-1.5 rounded-lg text-[9px] font-black uppercase transition-all flex items-center gap-1.5 shadow-lg",
+                             isSimulating 
+                                 ? "bg-slate-700 text-white" 
+                                 : "bg-orange-500 text-white hover:bg-orange-600 active:scale-95"
+                         )}
+                     >
+                         {isSimulating ? <RotateCcw className="w-2.5 h-2.5" /> : <Play className="w-2.5 h-2.5" />}
+                         {isSimulating ? 'Reset' : 'Jalankan'}
+                     </button>
+                   </div>
                 </motion.div>
               </div>
 
