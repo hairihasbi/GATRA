@@ -537,39 +537,39 @@ export default function App() {
               initial={{ opacity: 0, x: 20 }}
               animate={{ opacity: 1, x: 0 }}
               exit={{ opacity: 0, x: -20 }}
-              className="absolute inset-0 flex flex-col xl:flex-row bg-white overflow-y-auto xl:overflow-hidden"
+              className="absolute inset-0 flex flex-col xl:flex-row bg-white overflow-hidden shadow-2xl"
             >
               {/* Mobile/Toggle Header for Lab on IFPs */}
-              <div className="xl:hidden h-20 bg-emerald-950 text-white flex items-center px-8 shrink-0 z-[60] sticky top-0 shadow-2xl border-b-4 border-emerald-800">
-                 <div className="flex items-center gap-5">
-                    <div className="w-12 h-12 bg-emerald-800 rounded-2xl flex items-center justify-center border border-emerald-600 shadow-inner">
-                       <FlaskConical className="w-8 h-8 text-orange-400" />
+              <div className="xl:hidden h-14 bg-emerald-950 text-white flex items-center px-4 shrink-0 z-[60] shadow-xl border-b border-emerald-800">
+                 <div className="flex items-center gap-3">
+                    <div className="w-8 h-8 bg-emerald-800 rounded-lg flex items-center justify-center border border-emerald-600">
+                       <FlaskConical className="w-5 h-5 text-orange-400" />
                     </div>
                     <div>
-                      <p className="text-[10px] font-black uppercase text-emerald-500 tracking-[0.4em] leading-none mb-1">Laboratorium GATRA</p>
-                      <p className="text-xl font-black uppercase tracking-tight">{MODULES.find(m => m.id === activeModule)?.subtitle}</p>
+                      <p className="text-[8px] font-black uppercase text-emerald-500 tracking-[0.2em] leading-none mb-0.5">Laboratorium GATRA</p>
+                      <p className="text-sm font-black uppercase tracking-tight">{MODULES.find(m => m.id === activeModule)?.subtitle}</p>
                     </div>
                  </div>
-                 <button onClick={() => setGameState('map')} className="ml-auto w-14 h-14 bg-orange-600 rounded-2xl flex items-center justify-center shadow-xl active:scale-90 border-4 border-orange-400 transition-all shadow-orange-950/20"><Navigation className="w-8 h-8 shrink-0" /></button>
+                 <button onClick={() => setGameState('map')} className="ml-auto w-10 h-10 bg-orange-600 rounded-xl flex items-center justify-center shadow-lg active:scale-90 border-2 border-orange-400 transition-all shadow-orange-950/20"><Navigation className="w-6 h-6 shrink-0" /></button>
               </div>
 
-              {/* Plotter View */}
-              <div className="flex-1 relative flex flex-col overflow-hidden min-h-[500px] xl:h-full">
+              {/* Plotter View - Fixed height on mobile for visibility, flexible on desktop */}
+              <div className="flex-[3] xl:flex-1 relative flex flex-col overflow-hidden h-[45vh] xl:h-full bg-slate-50">
                 {/* Horizontal Tool Bar for Modes - Prevents Overlap on IFPs */}
-                <div className="bg-emerald-950 border-b-2 border-emerald-800 p-2 sm:p-4 flex flex-wrap justify-center gap-3 z-50 shadow-lg shrink-0">
+                <div className="bg-emerald-950 border-b border-emerald-800 p-1.5 flex flex-wrap justify-center gap-2 z-50 shadow-md shrink-0">
                     {/* Common Modes for Translasi */}
                     {activeModule === 'translasi' && (
-                      <div className="flex gap-2 p-1 bg-emerald-900/50 rounded-xl border border-emerald-700/50">
+                      <div className="flex gap-1 p-0.5 bg-emerald-900/50 rounded-lg border border-emerald-700/50">
                         {['graph', 'geometry', 'gps'].map((mode) => (
                            <button 
                              key={mode}
                              onClick={() => setLabMode(mode as LabMode)}
                              className={cn(
-                               "px-5 sm:px-8 py-2.5 sm:py-3 rounded-lg sm:rounded-xl text-[11px] sm:text-[12px] font-black uppercase tracking-widest transition-all",
-                               labMode === mode ? "bg-orange-600 text-white shadow-lg scale-105" : "text-emerald-100/40 hover:text-white"
+                               "px-4 py-1.5 rounded-md text-[9px] font-black uppercase tracking-widest transition-all",
+                               labMode === mode ? "bg-orange-600 text-white shadow-lg" : "text-emerald-100/40 hover:text-white"
                              )}
                            >
-                             {mode === 'graph' ? 'Mode Grafik' : mode === 'geometry' ? 'Bangun Datar' : 'Navigasi GPS'}
+                             {mode === 'graph' ? 'Grafik' : mode === 'geometry' ? 'Bangun' : 'GPS'}
                            </button>
                         ))}
                       </div>
@@ -577,27 +577,28 @@ export default function App() {
 
                     {/* Specialized Simulation Modes */}
                     {(activeModule === 'refleksi' || activeModule === 'dilatasi' || activeModule === 'rotasi' || activeModule === 'kombinasi') && (
-                      <div className="flex gap-2 p-1 bg-emerald-900/50 rounded-xl border border-emerald-700/50">
+                      <div className="flex gap-1 p-0.5 bg-emerald-900/50 rounded-lg border border-emerald-700/50">
                         {['graph', 'simulasi'].map((mode) => (
                           <button 
                             key={mode}
                             onClick={() => setLabMode(mode as LabMode)}
                             className={cn(
-                              "px-5 sm:px-8 py-2.5 sm:py-3 rounded-lg sm:rounded-xl text-[11px] sm:text-[12px] font-black uppercase tracking-widest transition-all flex items-center gap-2",
+                               "px-4 py-1.5 rounded-md text-[9px] font-black uppercase tracking-widest transition-all flex items-center gap-1.5",
                               labMode === mode 
-                                ? "bg-orange-600 text-white shadow-lg scale-105" 
+                                ? "bg-orange-600 text-white shadow-lg" 
                                 : "text-emerald-100/40 hover:text-white"
                             )}
                           >
-                            {mode === 'simulasi' && <Sparkles className="w-4 h-4 text-orange-400" />}
-                            {mode === 'graph' ? 'Mode Grafik' : 'Simulasi Dunia'}
+                            {mode === 'simulasi' && <Sparkles className="w-3 h-3 text-orange-400" />}
+                            {mode === 'graph' ? 'Grafik' : 'Simulasi'}
                           </button>
                         ))}
                       </div>
                     )}
                 </div>
 
-                <div className="flex-1 relative bg-white border-r-2 border-slate-100">
+                <div className="flex-1 relative bg-white overflow-hidden">
+                  {/* Lab Content */}
                   {activeModule === 'translasi' && labMode === 'gps' ? (
                     <GPSLab 
                       params={params} 
@@ -640,49 +641,35 @@ export default function App() {
                     />
                   )}
 
-                  {/* Floating Lab Info/HUD - Moved to top left, smaller */}
-                  {gameState === 'lab' && (
-                    <div className="absolute top-4 left-4 flex flex-col gap-2 pointer-events-none z-40">
-                       <motion.div 
-                         initial={{ opacity: 0, x: -20 }}
-                         animate={{ opacity: 1, x: 0 }}
-                         className="bg-emerald-950/90 backdrop-blur-md text-white border border-emerald-400/30 px-3 py-1.5 rounded-xl shadow-xl flex items-center gap-2"
-                       >
-                          <div className="w-6 h-6 bg-emerald-800 rounded-lg flex items-center justify-center">
-                             <FlaskConical className="w-4 h-4 text-orange-400" />
-                          </div>
-                          <div>
-                            <p className="text-[7px] font-black uppercase text-emerald-400 tracking-[0.2em] leading-none mb-0.5">Status Eksplorasi</p>
-                            <p className="text-[9px] font-bold italic">Lab {MODULES.find(m => m.id === activeModule)?.title}</p>
-                          </div>
-                       </motion.div>
-                    </div>
-                  )}
-
-                  {/* Zoom Controls */}
-                  <div className="absolute top-4 right-4 flex flex-col gap-2 z-40">
+                  {/* Tiny Floating Zoom Controls */}
+                  <div className="absolute bottom-4 left-4 flex gap-1 z-40 bg-white/80 p-0.5 rounded-lg border border-slate-200 shadow-sm backdrop-blur-sm">
                      <button 
                        onClick={() => setPlotScale(s => Math.min(100, s + 5))}
-                       className="w-10 h-10 bg-white border border-slate-200 rounded-xl shadow-lg flex items-center justify-center font-black text-emerald-900 hover:bg-slate-50 transition-all"
+                       className="w-7 h-7 flex items-center justify-center font-black text-emerald-900 hover:bg-slate-50 transition-all rounded-md"
                      >
                        +
                      </button>
+                     <div className="w-px h-4 bg-slate-200 self-center" />
                      <button 
                        onClick={() => setPlotScale(s => Math.max(10, s - 5))}
-                       className="w-10 h-10 bg-white border border-slate-200 rounded-xl shadow-lg flex items-center justify-center font-black text-emerald-900 hover:bg-slate-50 transition-all"
+                       className="w-7 h-7 flex items-center justify-center font-black text-emerald-900 hover:bg-slate-50 transition-all rounded-md"
                      >
                        -
                      </button>
                   </div>
+
+                  {/* Compact Status HUD */}
+                  <div className="absolute top-2 left-2 z-40 pointer-events-none">
+                     <div className="bg-emerald-950/80 backdrop-blur-sm text-white px-2 py-1 rounded-lg border border-emerald-400/20 shadow-lg flex items-center gap-1.5 translate-y-12 sm:translate-y-0">
+                        <FlaskConical className="w-2.5 h-2.5 text-orange-400" />
+                        <span className="text-[8px] font-black uppercase tracking-widest">{MODULES.find(m => m.id === activeModule)?.subtitle}</span>
+                     </div>
                   </div>
                 </div>
+              </div>
 
-              {/* Sidebar Controls */}
-              <div className="w-full xl:w-96 h-auto xl:h-full shrink-0 border-t xl:border-t-0 xl:border-l border-slate-300 overflow-y-auto bg-[#fdfaf3] z-[50] shadow-2xl">
-                <div className="p-4 bg-emerald-950 text-white xl:hidden flex items-center justify-between">
-                   <span className="text-[12px] font-black uppercase tracking-widest">Panel Kontrol Eksplorasi</span>
-                   <Navigation className="w-4 h-4 text-orange-400 rotate-90" />
-                </div>
+              {/* Sidebar Controls - Use flexible height on mobile, fixed width on desktop */}
+              <div className="flex-[2] xl:w-64 h-full shrink-0 border-t xl:border-t-0 xl:border-l border-slate-300 overflow-hidden bg-[#fdfaf3] z-[50] shadow-2xl">
                 <Controls 
                    params={params} 
                    setParams={setParams} 
