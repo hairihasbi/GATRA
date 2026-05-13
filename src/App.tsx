@@ -668,8 +668,8 @@ export default function App() {
                 </div>
               </div>
 
-              {/* Sidebar Controls - Use flexible height on mobile, fixed width on desktop */}
-              <div className="flex-[2] xl:w-64 h-full shrink-0 border-t xl:border-t-0 xl:border-l border-slate-300 overflow-hidden bg-[#fdfaf3] z-[50] shadow-2xl">
+              {/* Sidebar Controls - Fixed width on desktop, flexible on mobile */}
+              <div className="flex-[2] xl:flex-none xl:w-80 h-full shrink-0 border-t xl:border-t-0 xl:border-l border-slate-300 overflow-hidden bg-[#fdfaf3] z-[50] shadow-2xl">
                 <Controls 
                    params={params} 
                    setParams={setParams} 
